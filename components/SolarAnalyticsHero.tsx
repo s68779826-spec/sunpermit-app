@@ -57,7 +57,7 @@ export default function SolarAnalyticsHero() {
         <div className="absolute inset-0 opacity-[0.03] bg-repeat bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
       </div>
 
-      {/* ─── Floating Top Pill Navbar (Matches Screenshot) ─── */}
+      {/* ─── Floating Top Pill Navbar (Matches sunpermit.com exactly) ─── */}
       <header className="relative z-30 pt-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <nav className="bg-white/90 backdrop-blur-md border border-slate-200/80 rounded-2xl shadow-sm px-5 sm:px-8 py-3.5 flex items-center justify-between transition-all">
           {/* Logo */}
@@ -67,22 +67,24 @@ export default function SolarAnalyticsHero() {
                 <div className="w-4 h-4 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 -translate-x-1" />
               </div>
             </div>
-            <span className="text-lg font-bold tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors">
-              Solar<span className="text-orange-500">.Co</span>
-            </span>
+            <div className="flex flex-col">
+              <span className="text-lg font-extrabold tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors">
+                SUN<span className="text-orange-500">PERMIT</span>
+              </span>
+            </div>
           </Link>
 
-          {/* Center Links */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-            <Link href="/request-permit" className="hover:text-slate-950 transition-colors">Products</Link>
-            <Link href="/submit-company" className="hover:text-slate-950 transition-colors">Solutions</Link>
-            <Link href="/track-permit" className="hover:text-slate-950 transition-colors">How it works</Link>
-            <Link href="/request-permit" className="hover:text-slate-950 transition-colors">Pricing</Link>
-            <Link href="#contact" className="hover:text-slate-950 transition-colors">Blog</Link>
+          {/* Center Links from sunpermit.com */}
+          <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+            <Link href="#about" className="hover:text-slate-950 hover:text-orange-600 transition-colors">About Us</Link>
+            <Link href="#services" className="hover:text-slate-950 hover:text-orange-600 transition-colors">Services</Link>
+            <Link href="#pricing" className="hover:text-slate-950 hover:text-orange-600 transition-colors">Pricing Calculator</Link>
+            <Link href="#contact" className="hover:text-slate-950 hover:text-orange-600 transition-colors">Contact Us</Link>
+            <Link href="/track-permit" className="hover:text-slate-950 hover:text-orange-600 transition-colors">My Account</Link>
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4">
             <Link 
               href="/track-permit" 
               className="text-sm font-semibold text-slate-700 hover:text-slate-950 transition-colors hidden sm:inline-block"
@@ -93,7 +95,7 @@ export default function SolarAnalyticsHero() {
               href="/request-permit"
               className="bg-slate-950 hover:bg-slate-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
-              Get started
+              Get a Quote
             </Link>
           </div>
         </nav>

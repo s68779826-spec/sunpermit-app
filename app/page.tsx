@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import SolarAnalyticsHero from "@/components/SolarAnalyticsHero";
+import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
 import InteractiveRoiCalculator from "@/components/InteractiveRoiCalculator";
 import LeadForm from "@/components/LeadForm";
@@ -13,8 +14,11 @@ export default function HomePage() {
         <div id="analytics">
           <SolarAnalyticsHero />
         </div>
+        <AboutSection />
         <ServicesSection />
-        <InteractiveRoiCalculator />
+        <div id="pricing">
+          <InteractiveRoiCalculator />
+        </div>
         <LeadForm />
       </main>
       <Footer />
