@@ -4,7 +4,7 @@ import SolarAnalyticsHero from "@/components/SolarAnalyticsHero";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
 import InteractiveRoiCalculator from "@/components/InteractiveRoiCalculator";
-import LeadForm from "@/components/LeadForm";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 export default function HomePage() {
@@ -19,7 +19,7 @@ export default function HomePage() {
         <div id="pricing">
           <InteractiveRoiCalculator />
         </div>
-        <LeadForm />
+        <ContactSection />
       </main>
       <Footer />
     </div>
