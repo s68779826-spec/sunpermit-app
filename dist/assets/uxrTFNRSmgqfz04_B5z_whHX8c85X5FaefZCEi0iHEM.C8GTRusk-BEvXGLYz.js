@@ -1,0 +1,1 @@
+async function e(){return{}}async function t(){return{}}export{t as preload,e as readMaybeAsync};
