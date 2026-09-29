@@ -2,183 +2,166 @@
 
 import React from "react";
 import Link from "next/link";
-import { 
-  CheckCircle2, 
-  FileText, 
-  Stamp, 
-  Battery, 
-  Zap, 
-  Clock, 
-  ShieldAlert, 
+import { motion } from "framer-motion";
+import {
+  HardHat,
+  FileSpreadsheet,
+  Compass,
+  ClipboardCheck,
   ArrowRight,
+  ChevronRight,
   Sparkles,
-  Building
+  Zap,
+  CheckCircle2
 } from "lucide-react";
 
-const services = [
+const sunServices = [
   {
-    id: "residential",
-    title: "Residential Solar Permit Planset",
-    badge: "Most Popular",
-    badgeColor: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-    price: "$149",
-    turnaround: "24 – 48 Hours",
-    description: "Complete permit-ready solar drafting package for residential rooftop & ground mount installations.",
-    features: [
-      "Full Electrical Single-Line Diagram (SLD)",
-      "Site Plan, Roof Layout & Structural Attachment",
-      "NEC 2020 & NEC 2023 Code Compliance",
-      "Safety Placard & Warning Label Layouts",
-      "Equipment Datasheet Package Included",
-      "Unlimited Revisions until AHJ Approval"
-    ],
-    cta: "Request Planset Now",
-    href: "/request-permit?service=residential",
-    popular: true,
+    id: "engineering",
+    icon: HardHat,
+    title: "Engineering",
+    description: "Electrical & Structural review and stamps, Structural Analysis Report.",
+    linkText: "Discover how",
+    href: "/request-permit?service=engineering",
   },
   {
-    id: "pe-stamps",
-    title: "Licensed PE Engineering Stamps",
-    badge: "50 States Covered",
-    badgeColor: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
-    price: "$199",
-    turnaround: "24 Hours Express",
-    description: "Professional Engineer (PE) structural & electrical stamps signed by licensed engineers.",
-    features: [
-      "50-State PE Engineer Network",
-      "Structural Rooftop Load & Wind Calculations",
-      "Electrical Circuit & Voltage Drop Verification",
-      "Digital Cryptographic Signature & Seal",
-      "Hardcopy Wet Stamps Available (Physical Mail)",
-      "Instant PDF Download for AHJ Submission"
-    ],
-    cta: "Get PE Stamps",
-    href: "/request-permit?service=pe-stamps",
-    popular: false,
+    id: "proposals",
+    icon: FileSpreadsheet,
+    title: "Proposal drawings",
+    description: "Aurora proposals, Shade Report, Production Report, 3d Roof Design.",
+    linkText: "Discover how",
+    href: "/request-permit?service=proposals",
   },
   {
-    id: "battery-ess",
-    title: "Battery Storage & ESS Integration",
-    badge: "Tesla / Enphase / Sol-Ark",
-    badgeColor: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-    price: "+$99",
-    turnaround: "Added to Planset",
-    description: "Full battery backup single-line diagrams, load center schedules, and rapid shutdown specs.",
-    features: [
-      "Tesla Powerwall 3 / Enphase 5P / FranklinWH",
-      "Whole-Home & Partial Backup Load Calculations",
-      "Smart Transfer Switch & Gateway Diagrams",
-      "Fire Code (NFPA 855) Setback Compliance",
-      "Utility Interconnection Package",
-      "Generator & EV Charger Integration Options"
-    ],
-    cta: "Add Battery Plan",
-    href: "/request-permit?service=battery",
-    popular: false,
+    id: "plansets",
+    icon: Compass,
+    title: "Permit Plansets",
+    description: "CAD Plan as per local codes & regulations, BOM, Safety Plan.",
+    linkText: "Discover how",
+    href: "/request-permit?service=planset",
   },
   {
-    id: "commercial",
-    title: "Commercial & Industrial (C&I)",
-    badge: "Custom Engineering",
-    badgeColor: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-    price: "Custom",
-    turnaround: "48 – 72 Hours",
-    description: "Enterprise solar engineering packages for commercial roofs, carports, and utility-scale projects.",
-    features: [
-      "Medium & High Voltage Electrical Single-Lines",
-      "3D Shading Simulation & Helioscope Exports",
-      "Transformer & Switchgear Engineering",
-      "Title 24 & Energy Code Compliance Reports",
-      "Interconnection Application Assistance",
-      "Dedicated Senior CAD Project Manager"
-    ],
-    cta: "Consult Commercial Team",
+    id: "project-mgmt",
+    icon: ClipboardCheck,
+    title: "Project Management",
+    description: "Permitting, Interconnection, SREC, HOA, Material.",
+    linkText: "Discover how",
     href: "/submit-company",
-    popular: false,
-  }
+  },
 ];
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-20 bg-[#070A12] border-t border-slate-800/60 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#FBF7F2] text-slate-900 overflow-hidden border-t border-slate-900/5">
+      {/* Subtle warm ambient lighting */}
+      <div className="absolute top-1/3 right-1/4 w-[600px] h-[500px] bg-orange-400/10 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4">
-            <Zap className="w-3.5 h-3.5" />
-            SUNPERMIT QUICK SERVICES
+        {/* ─── Top Header (Matches Screenshot 1 Layout with Screenshot 2 Text) ─── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
+          
+          {/* Left Tag */}
+          <div className="lg:col-span-4">
+            <div className="inline-flex items-center gap-2 text-xs font-bold tracking-wider text-slate-700 uppercase">
+              <span className="w-2 h-2 rounded-full bg-slate-900 animate-pulse" />
+              Take a moment to explore our services
+            </div>
+            <div className="mt-3">
+              <span className="text-[11px] font-bold text-orange-600 tracking-widest uppercase bg-orange-100/80 px-3 py-1 rounded-full border border-orange-200">
+                SUN SERVICES
+              </span>
+            </div>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Permit Plansets &amp; Engineering Packages
-          </h2>
-          <p className="mt-4 text-slate-400 text-base sm:text-lg">
-            Transparent flat-rate pricing for solar installers. Delivered with 24-hour express speed and guaranteed first-pass AHJ approval.
-          </p>
+
+          {/* Right Main Heading */}
+          <div className="lg:col-span-8">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-950 leading-[1.15]">
+              Redefining Solar Design and Engineering
+            </h2>
+          </div>
+
         </div>
 
-        {/* Services Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className={`relative rounded-2xl p-6 transition-all flex flex-col justify-between ${
-                service.popular
-                  ? "bg-gradient-to-b from-[#0F1B2D] to-[#0A1220] border-2 border-emerald-500/50 shadow-xl shadow-emerald-500/10 scale-[1.02]"
-                  : "bg-slate-900/60 border border-slate-800 hover:border-slate-700"
-              }`}
-            >
-              {service.popular && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 text-[11px] font-extrabold tracking-wide uppercase shadow-md">
-                  ★ RECOMMENDED CHOICE
-                </div>
-              )}
+        {/* ─── Main Content: Left Sunrise Image Card + Right 4 Services ─── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          
+          {/* ─── Left Column: Golden Sunrise Mountain / Solar Reflection Image Card (Matches Screenshot 1) ─── */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 relative rounded-[32px] overflow-hidden shadow-2xl min-h-[420px] lg:min-h-full border border-slate-200/80 group"
+          >
+            {/* High-Resolution Warm Golden Sunrise Mountain Landscape */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop')`,
+              }}
+            />
+            {/* Warm Golden Sunrise Glow Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-orange-950/60 via-orange-500/20 to-transparent mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/30 via-transparent to-transparent" />
 
-              <div>
-                {/* Badge & Turnaround */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${service.badgeColor}`}>
-                    {service.badge}
-                  </span>
-                  <span className="flex items-center gap-1 text-[11px] text-slate-400 font-medium">
-                    <Clock className="w-3 h-3 text-cyan-400" />
-                    {service.turnaround}
-                  </span>
-                </div>
-
-                {/* Title & Price */}
-                <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
-                <div className="flex items-baseline gap-1 mb-3">
-                  <span className="text-3xl font-extrabold text-white">{service.price}</span>
-                  {service.price.startsWith("$") && <span className="text-xs text-slate-400">/ per project</span>}
-                </div>
-                <p className="text-xs text-slate-400 leading-relaxed mb-6">{service.description}</p>
-
-                {/* Features List */}
-                <ul className="space-y-2.5 mb-8 border-t border-slate-800/80 pt-4">
-                  {service.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
+            {/* Subtle Floating SunPermit Trust Badge */}
+            <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 text-white">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-200 mb-1">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                Nationwide Solar Engineering
               </div>
-
-              {/* Button CTA */}
-              <Link
-                href={service.href}
-                className={`w-full py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all ${
-                  service.popular
-                    ? "bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 hover:brightness-110 shadow-lg shadow-emerald-500/20"
-                    : "bg-slate-800 text-slate-200 hover:bg-slate-700 hover:text-white"
-                }`}
-              >
-                {service.cta}
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              <p className="text-sm font-bold text-white leading-snug">
+                Serving solar installers across all 50 states with 24-hr express CAD turnaround.
+              </p>
             </div>
-          ))}
+          </motion.div>
+
+          {/* ─── Right Column: 4 Services Grid (Matches Screenshot 1 Theme with Screenshot 2 Content) ─── */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+            {sunServices.map((service, idx) => {
+              const IconComponent = service.icon;
+              return (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="bg-white/80 backdrop-blur-sm border border-slate-200/90 rounded-[24px] p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-orange-300/80 transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    {/* Orange Circular Icon Badge (Matches Screenshot 1) */}
+                    <div className="w-12 h-12 rounded-full bg-[#FFF1E8] border border-orange-200/80 text-orange-600 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white transition-all shadow-sm">
+                      <IconComponent className="w-5 h-5" />
+                    </div>
+
+                    {/* Service Title */}
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-950 mb-2.5 tracking-tight group-hover:text-orange-600 transition-colors">
+                      {service.title}
+                    </h3>
+
+                    {/* Service Description (Exact content from Screenshot 2) */}
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  {/* Discover How / Action Link (Matches Screenshot 1) */}
+                  <div className="pt-6 mt-4 border-t border-slate-100">
+                    <Link
+                      href={service.href}
+                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-950 hover:text-orange-600 transition-colors group/link"
+                    >
+                      <span>{service.linkText}</span>
+                      <ChevronRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform text-slate-400 group-hover/link:text-orange-600" />
+                    </Link>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
         </div>
 
       </div>
