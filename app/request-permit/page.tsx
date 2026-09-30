@@ -21,7 +21,8 @@ import {
   ShieldCheck,
   AlertCircle,
   FileCheck,
-  Building2
+  Building2,
+  Compass
 } from "lucide-react";
 
 export default function RequestPermitPage() {
@@ -58,28 +59,25 @@ export default function RequestPermitPage() {
     needStructuralPe: true,
     deliverySpeed: "24hr",
     customNotes: "",
-    uploadedFiles: [
-      { name: "Roof_Drone_Photo.jpg", size: "2.4 MB" },
-      { name: "Main_Electrical_Panel.jpg", size: "1.8 MB" }
-    ]
+    contactEmail: "",
+    contactPhone: ""
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    if (type === "checkbox") {
-      const checked = (e.target as HTMLInputElement).checked;
-      setOrderData((prev) => ({ ...prev, [name]: checked }));
-    } else {
-      setOrderData((prev) => ({ ...prev, [name]: value }));
-    }
+    const { name, value } = e.target;
+    setOrderData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleCheckboxChange = (name: string, checked: boolean) => {
+    setOrderData((prev) => ({ ...prev, [name]: checked }));
+  };
+
+  // Pricing calculations
   const basePlansetPrice = 149;
   const electricalPePrice = orderData.needElectricalPe ? 99 : 0;
   const structuralPePrice = orderData.needStructuralPe ? 100 : 0;
   const batteryAddonPrice = orderData.hasBattery ? 99 : 0;
   const expressFee = orderData.deliverySpeed === "24hr" ? 50 : 0;
-
   const totalPrice = basePlansetPrice + electricalPePrice + structuralPePrice + batteryAddonPrice + expressFee;
 
   const handleOrderSubmit = async (e: React.FormEvent) => {
@@ -90,7 +88,10 @@ export default function RequestPermitPage() {
       const res = await fetch("/api/request-permit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...orderData, totalPrice }),
+        body: JSON.stringify({
+          ...orderData,
+          totalPrice
+        }),
       });
 
       const data = await res.json();
@@ -113,708 +114,762 @@ export default function RequestPermitPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070A12] text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#FAF7F2] text-slate-900 flex flex-col selection:bg-orange-500 selection:text-white">
       <Navbar />
 
-      <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 bg-grid-pattern relative">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
-
-        <div className="max-w-5xl mx-auto">
-          
-          {/* Header */}
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4">
-              <FileText className="w-3.5 h-3.5" />
-              SUNPERMIT QUICK ORDER FORM
-            </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-              Request Solar Permit Planset
-            </h1>
-            <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
-              Complete permit-ready solar drafting with licensed PE structural &amp; electrical engineering stamps in 24 hours.
-            </p>
+      <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
+        
+        {/* Header */}
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-xs font-bold text-orange-700 uppercase tracking-wider mb-4">
+            <Compass className="w-3.5 h-3.5 text-orange-600" />
+            SUNPERMIT QUICK ORDER FORM
           </div>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
+            Request Solar Permit Planset
+          </h1>
+          <p className="mt-3 text-slate-600 text-sm sm:text-base max-w-xl mx-auto font-normal">
+            Complete permit-ready solar drafting with licensed PE structural &amp; electrical engineering stamps in 24 hours.
+          </p>
+        </div>
 
-          {/* Stages Navigator Bar */}
-          {!isSuccess && (
-            <div className="mb-8 p-4 rounded-2xl bg-slate-900/70 border border-slate-800">
-              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-xs font-semibold">
-                <button
-                  onClick={() => setStage(1)}
-                  className={`py-2 px-2 rounded-xl transition-all ${
-                    stage === 1 ? "bg-emerald-500 text-slate-950 font-bold" : "text-slate-400 hover:text-white"
-                  }`}
-                >
-                  1. Site &amp; AHJ
-                </button>
-                <button
-                  onClick={() => setStage(2)}
-                  className={`py-2 px-2 rounded-xl transition-all ${
-                    stage === 2 ? "bg-emerald-500 text-slate-950 font-bold" : "text-slate-400 hover:text-white"
-                  }`}
-                >
-                  2. Equipment
-                </button>
-                <button
-                  onClick={() => setStage(3)}
-                  className={`py-2 px-2 rounded-xl transition-all ${
-                    stage === 3 ? "bg-emerald-500 text-slate-950 font-bold" : "text-slate-400 hover:text-white"
-                  }`}
-                >
-                  3. Electrical &amp; ESS
-                </button>
-                <button
-                  onClick={() => setStage(4)}
-                  className={`py-2 px-2 rounded-xl transition-all ${
-                    stage === 4 ? "bg-emerald-500 text-slate-950 font-bold" : "text-slate-400 hover:text-white"
-                  }`}
-                >
-                  4. PE Stamps
-                </button>
-                <button
-                  onClick={() => setStage(5)}
-                  className={`py-2 px-2 rounded-xl transition-all ${
-                    stage === 5 ? "bg-emerald-500 text-slate-950 font-bold" : "text-slate-400 hover:text-white"
-                  }`}
-                >
-                  5. Review &amp; Submit
-                </button>
-              </div>
+        {/* Stages Navigator Bar */}
+        {!isSuccess && (
+          <div className="mb-8 p-3 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-xs font-semibold">
+              <button
+                type="button"
+                onClick={() => setStage(1)}
+                className={`py-2.5 px-3 rounded-xl transition-all ${
+                  stage === 1 ? "bg-orange-500 text-white font-bold shadow-xs" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                }`}
+              >
+                1. Site &amp; AHJ
+              </button>
+              <button
+                type="button"
+                onClick={() => setStage(2)}
+                className={`py-2.5 px-3 rounded-xl transition-all ${
+                  stage === 2 ? "bg-orange-500 text-white font-bold shadow-xs" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                }`}
+              >
+                2. Equipment
+              </button>
+              <button
+                type="button"
+                onClick={() => setStage(3)}
+                className={`py-2.5 px-3 rounded-xl transition-all ${
+                  stage === 3 ? "bg-orange-500 text-white font-bold shadow-xs" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                }`}
+              >
+                3. Electrical &amp; ESS
+              </button>
+              <button
+                type="button"
+                onClick={() => setStage(4)}
+                className={`py-2.5 px-3 rounded-xl transition-all ${
+                  stage === 4 ? "bg-orange-500 text-white font-bold shadow-xs" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                }`}
+              >
+                4. PE Stamps
+              </button>
+              <button
+                type="button"
+                onClick={() => setStage(5)}
+                className={`py-2.5 px-3 rounded-xl transition-all ${
+                  stage === 5 ? "bg-orange-500 text-white font-bold shadow-xs" : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                }`}
+              >
+                5. Review &amp; Submit
+              </button>
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Form Card Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Form Card Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          {/* Main Form Fields */}
+          <div className="lg:col-span-8 rounded-3xl p-6 sm:p-8 bg-white border border-slate-200/90 shadow-sm">
             
-            {/* Main Form Fields */}
-            <div className="lg:col-span-8 rounded-2xl p-6 sm:p-8 bg-slate-900/80 border border-slate-800 shadow-2xl backdrop-blur-xl">
-              
-              {isSuccess ? (
-                /* Order Success Screen */
-                <div className="text-center py-8 space-y-6">
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
+            {isSuccess ? (
+              /* Order Success Screen */
+              <div className="text-center py-8 space-y-6">
+                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-9 h-9" />
+                </div>
 
-                  <div className="space-y-2">
-                    <h2 className="text-2xl font-extrabold text-white">Permit Request Submitted Successfully!</h2>
-                    <p className="text-slate-400 text-sm max-w-md mx-auto">
-                      Your planset request has been routed to our CAD drafting team &amp; licensed PE engineers.
-                    </p>
-                    <div className="inline-block px-5 py-2.5 rounded-xl bg-slate-950 border border-emerald-500/30 text-emerald-400 font-mono font-bold text-xl my-2">
-                      Permit ID: {trackingId}
-                    </div>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-left space-y-2 text-xs text-slate-300 max-w-md mx-auto">
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Customer / Site:</span>
-                      <span className="font-semibold text-white">{orderData.customerName || "Homeowner Site"}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">AHJ Jurisdiction:</span>
-                      <span className="font-semibold text-white">{orderData.ahjName || "City Building Dept"}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">System Capacity:</span>
-                      <span className="font-semibold text-white">{orderData.systemSizeKw} kW DC PV</span>
-                    </div>
-                    <div className="flex justify-between border-t border-slate-800 pt-2">
-                      <span className="text-slate-400">Guaranteed SLA:</span>
-                      <span className="font-semibold text-emerald-400">24-Hour Express Delivery</span>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <Link
-                      href={`/track-permit?id=${trackingId}`}
-                      className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-500/20"
-                    >
-                      Track Permit Status Live
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-
-                    <button
-                      onClick={() => {
-                        setIsSuccess(false);
-                        setStage(1);
-                      }}
-                      className="w-full sm:w-auto px-6 py-3.5 rounded-xl font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 text-sm"
-                    >
-                      Submit Another Planset
-                    </button>
+                <div className="space-y-2">
+                  <h2 className="text-2xl font-extrabold text-slate-950">Permit Request Submitted Successfully!</h2>
+                  <p className="text-slate-600 text-sm max-w-md mx-auto">
+                    Your planset request has been routed to our CAD drafting team &amp; licensed PE engineers.
+                  </p>
+                  <div className="inline-block px-5 py-2.5 rounded-xl bg-orange-50 border border-orange-200 text-orange-600 font-mono font-bold text-xl my-2">
+                    Tracking ID: {trackingId}
                   </div>
                 </div>
-              ) : (
-                <form onSubmit={handleOrderSubmit} className="space-y-6">
-                  
-                  {/* Stage 1: Site Location & AHJ */}
-                  {stage === 1 && (
-                    <div className="space-y-4">
-                      <h3 className="text-base font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
-                        <MapPin className="w-4 h-4 text-emerald-400" />
-                        Stage 1: Site Location &amp; AHJ Jurisdiction
-                      </h3>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">
-                            Customer / Property Owner Name *
-                          </label>
-                          <input
-                            type="text"
-                            name="customerName"
-                            required
-                            value={orderData.customerName}
-                            onChange={handleInputChange}
-                            placeholder="e.g. Robert Smith"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
+                <div className="p-4 rounded-xl bg-[#FAF7F2] border border-slate-200 text-left space-y-2 text-xs text-slate-700 max-w-md mx-auto">
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">Customer / Site:</span>
+                    <span className="font-semibold text-slate-900">{orderData.customerName || "Homeowner Site"}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">AHJ Jurisdiction:</span>
+                    <span className="font-semibold text-slate-900">{orderData.ahjName || "City Building Dept"}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-slate-500">System Capacity:</span>
+                    <span className="font-semibold text-slate-900">{orderData.systemSizeKw} kW DC PV</span>
+                  </div>
+                  <div className="flex justify-between border-t border-slate-200 pt-2">
+                    <span className="text-slate-500">Guaranteed SLA:</span>
+                    <span className="font-semibold text-emerald-600">24-Hour Express Delivery</span>
+                  </div>
+                </div>
 
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">
-                            Internal Job Reference ID
-                          </label>
-                          <input
-                            type="text"
-                            name="jobRefId"
-                            value={orderData.jobRefId}
-                            onChange={handleInputChange}
-                            placeholder="e.g. JOB-8821"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
-                      </div>
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Link
+                    href={`/track-permit?id=${trackingId}`}
+                    className="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-white bg-slate-950 hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-sm shadow-sm"
+                  >
+                    Track Permit Status Live
+                    <ArrowRight className="w-4 h-4 text-orange-400" />
+                  </Link>
 
+                  <button
+                    onClick={() => {
+                      setIsSuccess(false);
+                      setStage(1);
+                    }}
+                    className="w-full sm:w-auto px-6 py-3.5 rounded-xl font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 text-sm"
+                  >
+                    Submit Another Planset
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleOrderSubmit} className="space-y-6">
+                
+                {/* Stage 1: Site Location & AHJ */}
+                {stage === 1 && (
+                  <div className="space-y-4">
+                    <h3 className="text-base font-bold text-slate-950 flex items-center gap-2 border-b border-slate-100 pb-3">
+                      <MapPin className="w-4 h-4 text-orange-600" />
+                      Stage 1: Site Location &amp; AHJ Jurisdiction
+                    </h3>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs font-semibold text-slate-300 mb-1">
-                          Property Street Address *
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">
+                          Customer / Property Owner Name *
                         </label>
                         <input
                           type="text"
-                          name="streetAddress"
+                          name="customerName"
                           required
-                          value={orderData.streetAddress}
+                          value={orderData.customerName}
                           onChange={handleInputChange}
-                          placeholder="e.g. 742 Evergreen Terrace"
-                          className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+                          placeholder="e.g. Robert Smith"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
                         />
                       </div>
 
-                      <div className="grid grid-cols-3 gap-3">
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">City *</label>
-                          <input
-                            type="text"
-                            name="city"
-                            required
-                            value={orderData.city}
-                            onChange={handleInputChange}
-                            placeholder="Austin"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">State *</label>
-                          <select
-                            name="state"
-                            value={orderData.state}
-                            onChange={handleInputChange}
-                            className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500"
-                          >
-                            {["CA", "TX", "FL", "AZ", "NV", "NY", "NJ", "CO", "NC", "SC", "IL"].map((s) => (
-                              <option key={s} value={s}>{s}</option>
-                            ))}
-                          </select>
-                        </div>
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">Zip Code *</label>
-                          <input
-                            type="text"
-                            name="zipCode"
-                            required
-                            value={orderData.zipCode}
-                            onChange={handleInputChange}
-                            placeholder="78701"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">
-                            AHJ Building Jurisdiction Name *
-                          </label>
-                          <input
-                            type="text"
-                            name="ahjName"
-                            required
-                            value={orderData.ahjName}
-                            onChange={handleInputChange}
-                            placeholder="e.g. City of Austin Building Dept"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">
-                            Electric Utility Provider *
-                          </label>
-                          <input
-                            type="text"
-                            name="utilityProvider"
-                            required
-                            value={orderData.utilityProvider}
-                            onChange={handleInputChange}
-                            placeholder="e.g. Austin Energy / PG&E"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">
+                          Internal Job Reference ID
+                        </label>
+                        <input
+                          type="text"
+                          name="jobRefId"
+                          value={orderData.jobRefId}
+                          onChange={handleInputChange}
+                          placeholder="e.g. JOB-8821"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
                       </div>
                     </div>
-                  )}
 
-                  {/* Stage 2: Equipment Specs */}
-                  {stage === 2 && (
-                    <div className="space-y-4">
-                      <h3 className="text-base font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
-                        <Sun className="w-4 h-4 text-cyan-400" />
-                        Stage 2: Solar System &amp; Equipment Specifications
-                      </h3>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1">
+                        Property Street Address *
+                      </label>
+                      <input
+                        type="text"
+                        name="streetAddress"
+                        required
+                        value={orderData.streetAddress}
+                        onChange={handleInputChange}
+                        placeholder="e.g. 742 Evergreen Terrace"
+                        className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                      />
+                    </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">
-                            Total DC System Size (kW) *
-                          </label>
-                          <input
-                            type="text"
-                            name="systemSizeKw"
-                            required
-                            value={orderData.systemSizeKw}
-                            onChange={handleInputChange}
-                            placeholder="e.g. 11.4"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">
-                            Racking &amp; Mounting System
-                          </label>
-                          <input
-                            type="text"
-                            name="rackingSystem"
-                            value={orderData.rackingSystem}
-                            onChange={handleInputChange}
-                            placeholder="IronRidge XR100 Roof Mount"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
+                    <div className="grid grid-cols-3 gap-3">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">City *</label>
+                        <input
+                          type="text"
+                          name="city"
+                          required
+                          value={orderData.city}
+                          onChange={handleInputChange}
+                          placeholder="Austin"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
                       </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div className="sm:col-span-2">
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">
-                            Solar Module Model Brand &amp; Wattage *
-                          </label>
-                          <input
-                            type="text"
-                            name="moduleModel"
-                            required
-                            value={orderData.moduleModel}
-                            onChange={handleInputChange}
-                            placeholder="Q.CELLS Q.PEAK DUO 400W"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">
-                            Module Quantity *
-                          </label>
-                          <input
-                            type="text"
-                            name="moduleQuantity"
-                            required
-                            value={orderData.moduleQuantity}
-                            onChange={handleInputChange}
-                            placeholder="28"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">State *</label>
+                        <select
+                          name="state"
+                          value={orderData.state}
+                          onChange={handleInputChange}
+                          className="w-full px-3 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-orange-500"
+                        >
+                          {["CA", "TX", "FL", "AZ", "NV", "NY", "NJ", "CO", "NC", "SC", "IL"].map((s) => (
+                            <option key={s} value={s}>{s}</option>
+                          ))}
+                        </select>
                       </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div className="sm:col-span-2">
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">
-                            Inverter Model / Microinverter Brand *
-                          </label>
-                          <input
-                            type="text"
-                            name="inverterModel"
-                            required
-                            value={orderData.inverterModel}
-                            onChange={handleInputChange}
-                            placeholder="Enphase IQ8M Microinverter"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">
-                            Inverter Qty *
-                          </label>
-                          <input
-                            type="text"
-                            name="inverterQuantity"
-                            required
-                            value={orderData.inverterQuantity}
-                            onChange={handleInputChange}
-                            placeholder="28"
-                            className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                          />
-                        </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">Zip Code *</label>
+                        <input
+                          type="text"
+                          name="zipCode"
+                          required
+                          value={orderData.zipCode}
+                          onChange={handleInputChange}
+                          placeholder="78701"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
                       </div>
                     </div>
-                  )}
 
-                  {/* Stage 3: Electrical & Battery Storage */}
-                  {stage === 3 && (
-                    <div className="space-y-4">
-                      <h3 className="text-base font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
-                        <Zap className="w-4 h-4 text-amber-400" />
-                        Stage 3: Electrical Panel &amp; Battery Storage (ESS)
-                      </h3>
-
-                      <div className="grid grid-cols-3 gap-3">
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">MSP Amperage</label>
-                          <select
-                            name="mspRatingAmps"
-                            value={orderData.mspRatingAmps}
-                            onChange={handleInputChange}
-                            className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500"
-                          >
-                            <option value="200A">200 Amp MSP</option>
-                            <option value="125A">125 Amp MSP</option>
-                            <option value="100A">100 Amp MSP</option>
-                            <option value="400A">400 Amp MSP</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">Busbar Rating</label>
-                          <select
-                            name="busbarRatingAmps"
-                            value={orderData.busbarRatingAmps}
-                            onChange={handleInputChange}
-                            className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500"
-                          >
-                            <option value="225A">225 Amp Busbar</option>
-                            <option value="200A">200 Amp Busbar</option>
-                            <option value="125A">125 Amp Busbar</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label className="block text-xs font-semibold text-slate-300 mb-1">Main Breaker</label>
-                          <select
-                            name="mainBreakerAmps"
-                            value={orderData.mainBreakerAmps}
-                            onChange={handleInputChange}
-                            className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500"
-                          >
-                            <option value="200A">200 Amp Main</option>
-                            <option value="175A">175 Amp Main</option>
-                            <option value="150A">150 Amp Main</option>
-                            <option value="100A">100 Amp Main</option>
-                          </select>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">
+                          AHJ Building Jurisdiction Name *
+                        </label>
+                        <input
+                          type="text"
+                          name="ahjName"
+                          required
+                          value={orderData.ahjName}
+                          onChange={handleInputChange}
+                          placeholder="e.g. City of Austin Building Dept"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
                       </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">
+                          Utility Interconnection Provider *
+                        </label>
+                        <input
+                          type="text"
+                          name="utilityProvider"
+                          required
+                          value={orderData.utilityProvider}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Austin Energy / PG&E / Oncor"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                    </div>
 
-                      {/* Battery Storage Checkbox */}
-                      <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <Battery className="w-5 h-5 text-emerald-400" />
-                          <div>
-                            <span className="text-xs font-bold text-white block">Include Battery Storage System (ESS)?</span>
-                            <span className="text-[11px] text-slate-400">Tesla Powerwall 3 / Enphase IQ Battery / FranklinWH</span>
-                          </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">
+                          Project Manager Email *
+                        </label>
+                        <input
+                          type="email"
+                          name="contactEmail"
+                          required
+                          value={orderData.contactEmail}
+                          onChange={handleInputChange}
+                          placeholder="you@company.com"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">
+                          Contact Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          name="contactPhone"
+                          value={orderData.contactPhone}
+                          onChange={handleInputChange}
+                          placeholder="(555) 000-0000"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Stage 2: Solar Equipment Specs */}
+                {stage === 2 && (
+                  <div className="space-y-4">
+                    <h3 className="text-base font-bold text-slate-950 flex items-center gap-2 border-b border-slate-100 pb-3">
+                      <Sun className="w-4 h-4 text-orange-600" />
+                      Stage 2: Solar Panels &amp; Inverter Equipment
+                    </h3>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">System Capacity (kW DC) *</label>
+                        <input
+                          type="text"
+                          name="systemSizeKw"
+                          required
+                          value={orderData.systemSizeKw}
+                          onChange={handleInputChange}
+                          placeholder="11.4"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">Number of Solar Modules *</label>
+                        <input
+                          type="text"
+                          name="moduleQuantity"
+                          required
+                          value={orderData.moduleQuantity}
+                          onChange={handleInputChange}
+                          placeholder="28"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1">Solar PV Module Model *</label>
+                      <input
+                        type="text"
+                        name="moduleModel"
+                        required
+                        value={orderData.moduleModel}
+                        onChange={handleInputChange}
+                        placeholder="e.g. Q.PEAK DUO BLK ML-G10+ 400W"
+                        className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">Inverter Model *</label>
+                        <input
+                          type="text"
+                          name="inverterModel"
+                          required
+                          value={orderData.inverterModel}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Enphase IQ8M / SolarEdge Energy Hub"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">Inverter Quantity *</label>
+                        <input
+                          type="text"
+                          name="inverterQuantity"
+                          required
+                          value={orderData.inverterQuantity}
+                          onChange={handleInputChange}
+                          placeholder="28"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">Mounting Racking</label>
+                        <input
+                          type="text"
+                          name="rackingSystem"
+                          value={orderData.rackingSystem}
+                          onChange={handleInputChange}
+                          placeholder="IronRidge XR100"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">Roof Pitch</label>
+                        <input
+                          type="text"
+                          name="roofPitch"
+                          value={orderData.roofPitch}
+                          onChange={handleInputChange}
+                          placeholder="22° (5/12)"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">Azimuth</label>
+                        <input
+                          type="text"
+                          name="azimuth"
+                          value={orderData.azimuth}
+                          onChange={handleInputChange}
+                          placeholder="180° South"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Stage 3: Electrical Single-Line & ESS Battery */}
+                {stage === 3 && (
+                  <div className="space-y-4">
+                    <h3 className="text-base font-bold text-slate-950 flex items-center gap-2 border-b border-slate-100 pb-3">
+                      <Battery className="w-4 h-4 text-orange-600" />
+                      Stage 3: Electrical Panel &amp; Battery Storage (ESS)
+                    </h3>
+
+                    <div className="grid grid-cols-3 gap-3">
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">MSP Rating</label>
+                        <input
+                          type="text"
+                          name="mspRatingAmps"
+                          value={orderData.mspRatingAmps}
+                          onChange={handleInputChange}
+                          placeholder="200A"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">Busbar Rating</label>
+                        <input
+                          type="text"
+                          name="busbarRatingAmps"
+                          value={orderData.busbarRatingAmps}
+                          onChange={handleInputChange}
+                          placeholder="225A"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold text-slate-700 mb-1">Main Breaker</label>
+                        <input
+                          type="text"
+                          name="mainBreakerAmps"
+                          value={orderData.mainBreakerAmps}
+                          onChange={handleInputChange}
+                          placeholder="200A"
+                          className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1">Interconnection Method</label>
+                      <select
+                        name="interconnectionMethod"
+                        value={orderData.interconnectionMethod}
+                        onChange={handleInputChange}
+                        className="w-full px-3 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-orange-500"
+                      >
+                        <option value="Load Center Breaker (20% Rule)">Load Center Breaker (NEC 705.12 20% Rule)</option>
+                        <option value="Supply Side Tap (Meter Adapter)">Supply Side Tap (Line Side Tap)</option>
+                        <option value="Main Panel Upgrade (MPU)">Main Panel Upgrade (MPU Scheduled)</option>
+                        <option value="Feeder Tap">Feeder Tap with OCPD</option>
+                      </select>
+                    </div>
+
+                    {/* Battery Storage Box */}
+                    <div className="p-4 rounded-xl bg-orange-50/60 border border-orange-200 mt-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-2">
+                          <Battery className="w-4 h-4 text-orange-600" />
+                          <span className="text-xs font-bold text-slate-900">Include Battery Storage (ESS)?</span>
                         </div>
                         <input
                           type="checkbox"
-                          name="hasBattery"
                           checked={orderData.hasBattery}
-                          onChange={handleInputChange}
-                          className="w-5 h-5 rounded border-slate-700 text-emerald-500 focus:ring-emerald-500"
+                          onChange={(e) => handleCheckboxChange("hasBattery", e.target.checked)}
+                          className="w-4 h-4 accent-orange-600 rounded"
                         />
                       </div>
 
                       {orderData.hasBattery && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                           <div>
-                            <label className="block text-xs font-semibold text-slate-300 mb-1">Battery Model</label>
+                            <label className="block text-[11px] font-semibold text-slate-700 mb-1">Battery Model</label>
                             <input
                               type="text"
                               name="batteryModel"
                               value={orderData.batteryModel}
                               onChange={handleInputChange}
-                              placeholder="Tesla Powerwall 3 (13.5 kWh)"
-                              className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+                              placeholder="e.g. Tesla Powerwall 3 / Enphase 5P"
+                              className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-orange-500"
                             />
                           </div>
                           <div>
-                            <label className="block text-xs font-semibold text-slate-300 mb-1">Battery Qty</label>
+                            <label className="block text-[11px] font-semibold text-slate-700 mb-1">Battery Qty</label>
                             <input
                               type="text"
                               name="batteryQty"
                               value={orderData.batteryQty}
                               onChange={handleInputChange}
                               placeholder="1"
-                              className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+                              className="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-900 focus:outline-none focus:border-orange-500"
                             />
                           </div>
                         </div>
                       )}
                     </div>
-                  )}
+                  </div>
+                )}
 
-                  {/* Stage 4: PE Stamps & Speed */}
-                  {stage === 4 && (
-                    <div className="space-y-4">
-                      <h3 className="text-base font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
-                        <Stamp className="w-4 h-4 text-emerald-400" />
-                        Stage 4: Licensed PE Engineering Stamps &amp; Delivery SLA
-                      </h3>
+                {/* Stage 4: PE Stamps & Delivery SLA */}
+                {stage === 4 && (
+                  <div className="space-y-4">
+                    <h3 className="text-base font-bold text-slate-950 flex items-center gap-2 border-b border-slate-100 pb-3">
+                      <Stamp className="w-4 h-4 text-orange-600" />
+                      Stage 4: Licensed PE Stamps &amp; Turnaround SLA
+                    </h3>
 
-                      <div className="space-y-3">
-                        <label className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            name="needElectricalPe"
-                            checked={orderData.needElectricalPe}
-                            onChange={handleInputChange}
-                            className="w-4 h-4 text-emerald-500 rounded border-slate-700"
-                          />
-                          <div className="text-xs">
-                            <span className="font-bold text-white block">Electrical PE Engineering Stamp (+$99)</span>
-                            <span className="text-slate-400">Signed electrical single line diagram &amp; load calculation seal</span>
+                    {/* Structural PE */}
+                    <div className="p-4 rounded-xl bg-white border border-slate-200 flex items-start justify-between">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                          <span className="text-xs font-bold text-slate-950">Licensed Structural PE Stamp (+$100)</span>
+                        </div>
+                        <p className="text-[11px] text-slate-600">
+                          Rooftop dead load, live load, and ASCE 7 wind &amp; seismic calculations stamped by a State-Licensed PE.
+                        </p>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={orderData.needStructuralPe}
+                        onChange={(e) => handleCheckboxChange("needStructuralPe", e.target.checked)}
+                        className="w-4 h-4 accent-orange-600 rounded mt-1"
+                      />
+                    </div>
+
+                    {/* Electrical PE */}
+                    <div className="p-4 rounded-xl bg-white border border-slate-200 flex items-start justify-between">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <Zap className="w-4 h-4 text-orange-600" />
+                          <span className="text-xs font-bold text-slate-950">Licensed Electrical PE Stamp (+$99)</span>
+                        </div>
+                        <p className="text-[11px] text-slate-600">
+                          Full electrical single-line diagram review, voltage drop, and NEC code verification stamped by a PE.
+                        </p>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={orderData.needElectricalPe}
+                        onChange={(e) => handleCheckboxChange("needElectricalPe", e.target.checked)}
+                        className="w-4 h-4 accent-orange-600 rounded mt-1"
+                      />
+                    </div>
+
+                    {/* Delivery Speed */}
+                    <div className="pt-2">
+                      <label className="block text-xs font-semibold text-slate-700 mb-2">Turnaround Delivery Speed</label>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div
+                          onClick={() => setOrderData({ ...orderData, deliverySpeed: "24hr" })}
+                          className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                            orderData.deliverySpeed === "24hr"
+                              ? "bg-orange-50/70 border-orange-500 text-slate-950"
+                              : "bg-[#F1F3F6] border-slate-200 text-slate-700"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between text-xs font-bold mb-1">
+                            <span>24-Hour Express</span>
+                            <span className="text-orange-600 font-extrabold">+$50</span>
                           </div>
-                        </label>
+                          <p className="text-[10px] text-slate-500">Guaranteed within 24 business hours</p>
+                        </div>
 
-                        <label className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-950 border border-slate-800 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            name="needStructuralPe"
-                            checked={orderData.needStructuralPe}
-                            onChange={handleInputChange}
-                            className="w-4 h-4 text-emerald-500 rounded border-slate-700"
-                          />
-                          <div className="text-xs">
-                            <span className="font-bold text-white block">Structural PE Engineering Stamp (+$100)</span>
-                            <span className="text-slate-400">Roof attachment load calculations, rafter/truss structural seal</span>
+                        <div
+                          onClick={() => setOrderData({ ...orderData, deliverySpeed: "standard" })}
+                          className={`p-3 rounded-xl border cursor-pointer transition-all ${
+                            orderData.deliverySpeed === "standard"
+                              ? "bg-orange-50/70 border-orange-500 text-slate-950"
+                              : "bg-[#F1F3F6] border-slate-200 text-slate-700"
+                          }`}
+                        >
+                          <div className="flex items-center justify-between text-xs font-bold mb-1">
+                            <span>Standard 48-Hr</span>
+                            <span className="text-emerald-600 font-extrabold">FREE</span>
                           </div>
-                        </label>
-                      </div>
-
-                      <div className="pt-2">
-                        <label className="block text-xs font-semibold text-slate-300 mb-2">Turnaround Delivery Speed:</label>
-                        <div className="grid grid-cols-2 gap-3">
-                          <button
-                            type="button"
-                            onClick={() => setOrderData((prev) => ({ ...prev, deliverySpeed: "24hr" }))}
-                            className={`p-3.5 rounded-xl border text-left transition-all ${
-                              orderData.deliverySpeed === "24hr"
-                                ? "bg-emerald-500/20 border-emerald-500 text-white"
-                                : "bg-slate-950 border-slate-800 text-slate-400"
-                            }`}
-                          >
-                            <span className="text-xs font-bold block text-emerald-400 flex items-center gap-1">
-                              <Zap className="w-3.5 h-3.5" /> 24-Hour Express (+$50)
-                            </span>
-                            <span className="text-[11px] text-slate-400">Guaranteed 24-hr turnaround SLA</span>
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={() => setOrderData((prev) => ({ ...prev, deliverySpeed: "48hr" }))}
-                            className={`p-3.5 rounded-xl border text-left transition-all ${
-                              orderData.deliverySpeed === "48hr"
-                                ? "bg-emerald-500/20 border-emerald-500 text-white"
-                                : "bg-slate-950 border-slate-800 text-slate-400"
-                            }`}
-                          >
-                            <span className="text-xs font-bold block text-white flex items-center gap-1">
-                              <Clock className="w-3.5 h-3.5 text-cyan-400" /> 48-Hour Standard
-                            </span>
-                            <span className="text-[11px] text-slate-400">Standard delivery SLA</span>
-                          </button>
+                          <p className="text-[10px] text-slate-500">Delivered within 48 business hours</p>
                         </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-xs font-semibold text-slate-300 mb-1">
-                          Special Instructions for SunPermit Drafters
-                        </label>
-                        <textarea
-                          name="customNotes"
-                          rows={2}
-                          value={orderData.customNotes}
-                          onChange={handleInputChange}
-                          placeholder="e.g. Please verify setback requirements for City of Austin..."
-                          className="w-full px-3.5 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                        />
                       </div>
                     </div>
-                  )}
-
-                  {/* Stage 5: Review & Submit */}
-                  {stage === 5 && (
-                    <div className="space-y-4">
-                      <h3 className="text-base font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
-                        <FileCheck className="w-4 h-4 text-emerald-400" />
-                        Stage 5: Final Review &amp; Instant Submission
-                      </h3>
-
-                      <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
-                        <div className="flex justify-between text-slate-300">
-                          <span className="text-slate-400">Customer Address:</span>
-                          <span className="font-semibold text-white">{orderData.streetAddress || "742 Evergreen Terrace"}</span>
-                        </div>
-                        <div className="flex justify-between text-slate-300">
-                          <span className="text-slate-400">AHJ Jurisdiction:</span>
-                          <span className="font-semibold text-white">{orderData.ahjName || "City of Austin"}</span>
-                        </div>
-                        <div className="flex justify-between text-slate-300">
-                          <span className="text-slate-400">System Equipment:</span>
-                          <span className="font-semibold text-white">{orderData.systemSizeKw} kW • {orderData.moduleQuantity}x {orderData.moduleModel}</span>
-                        </div>
-                        <div className="flex justify-between text-slate-300">
-                          <span className="text-slate-400">PE Stamps Selected:</span>
-                          <span className="font-semibold text-emerald-400">
-                            {orderData.needElectricalPe && "Electrical PE "}
-                            {orderData.needStructuralPe && "• Structural PE"}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* File upload simulator */}
-                      <div className="p-4 rounded-xl border border-dashed border-slate-700 bg-slate-950/60 text-center space-y-2">
-                        <Upload className="w-6 h-6 text-emerald-400 mx-auto" />
-                        <span className="text-xs font-semibold text-white block">Site Photos &amp; Survey Files Attached</span>
-                        <span className="text-[11px] text-slate-400">2 files attached (Roof_Drone_Photo.jpg, Panel_Spec.pdf)</span>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Form Stepper Controls */}
-                  <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
-                    {stage > 1 ? (
-                      <button
-                        type="button"
-                        onClick={() => setStage(stage - 1)}
-                        className="px-4 py-2 rounded-xl font-semibold text-xs text-slate-300 bg-slate-800 hover:bg-slate-700 flex items-center gap-1.5"
-                      >
-                        <ArrowLeft className="w-3.5 h-3.5" /> Previous Stage
-                      </button>
-                    ) : (
-                      <div />
-                    )}
-
-                    {stage < 5 ? (
-                      <button
-                        type="button"
-                        onClick={() => setStage(stage + 1)}
-                        className="px-6 py-2 rounded-xl font-bold text-xs text-slate-950 bg-emerald-400 hover:bg-emerald-300 flex items-center gap-1.5"
-                      >
-                        Next Step <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    ) : (
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="px-8 py-3 rounded-xl font-extrabold text-xs text-slate-950 bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-300 hover:brightness-110 shadow-lg shadow-emerald-500/25 flex items-center gap-2"
-                      >
-                        {isSubmitting ? (
-                          <>Generating Order...</>
-                        ) : (
-                          <>
-                            <CheckCircle2 className="w-4 h-4" /> Submit Permit Request (${totalPrice})
-                          </>
-                        )}
-                      </button>
-                    )}
                   </div>
+                )}
 
-                </form>
-              )}
+                {/* Stage 5: Review & Submit */}
+                {stage === 5 && (
+                  <div className="space-y-4">
+                    <h3 className="text-base font-bold text-slate-950 flex items-center gap-2 border-b border-slate-100 pb-3">
+                      <FileCheck className="w-4 h-4 text-emerald-600" />
+                      Stage 5: Final Review &amp; Submit Order
+                    </h3>
 
-            </div>
+                    <div className="space-y-2.5 p-4 rounded-xl bg-[#FAF7F2] border border-slate-200 text-xs text-slate-700">
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">Site Location:</span>
+                        <span className="font-semibold text-slate-900">{orderData.streetAddress || "Address"}, {orderData.city}, {orderData.state}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">AHJ Building Dept:</span>
+                        <span className="font-semibold text-slate-900">{orderData.ahjName}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">System Specs:</span>
+                        <span className="font-semibold text-slate-900">{orderData.systemSizeKw} kW • {orderData.moduleQuantity} Modules</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">Battery Backup:</span>
+                        <span className="font-semibold text-slate-900">{orderData.hasBattery ? orderData.batteryModel : "None"}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-500">PE Stamps:</span>
+                        <span className="font-semibold text-slate-900">
+                          {orderData.needStructuralPe ? "Structural PE " : ""}
+                          {orderData.needElectricalPe ? "• Electrical PE" : ""}
+                        </span>
+                      </div>
+                      <div className="flex justify-between border-t border-slate-200 pt-2 font-bold text-sm">
+                        <span className="text-slate-950">Total Order Amount:</span>
+                        <span className="text-orange-600 font-extrabold">${totalPrice}</span>
+                      </div>
+                    </div>
 
-            {/* Sidebar Pricing & SLA Calculator Summary */}
-            <div className="lg:col-span-4 space-y-6">
-              
-              <div className="rounded-2xl p-6 bg-gradient-to-b from-[#0F1B2D] to-[#0A1220] border border-emerald-500/30 shadow-xl">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-slate-200 mb-4 flex items-center justify-between">
-                  <span>Order Cost Summary</span>
-                  <DollarSign className="w-4 h-4 text-emerald-400" />
-                </h3>
-
-                <div className="space-y-2.5 text-xs border-b border-slate-800 pb-4 mb-4">
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Residential Solar Planset</span>
-                    <span className="font-semibold text-white">${basePlansetPrice}</span>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1">
+                        Special Instructions or AHJ Local Rules (Optional)
+                      </label>
+                      <textarea
+                        name="customNotes"
+                        rows={3}
+                        value={orderData.customNotes}
+                        onChange={handleInputChange}
+                        placeholder="Provide any HOA rules, specific AHJ setbacks, or structural framing details..."
+                        className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-orange-500 resize-none"
+                      />
+                    </div>
                   </div>
-                  {orderData.needElectricalPe && (
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Electrical PE Stamp</span>
-                      <span className="font-semibold text-white">+${electricalPePrice}</span>
-                    </div>
-                  )}
-                  {orderData.needStructuralPe && (
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Structural PE Stamp</span>
-                      <span className="font-semibold text-white">+${structuralPePrice}</span>
-                    </div>
-                  )}
-                  {orderData.hasBattery && (
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">Battery ESS Integration</span>
-                      <span className="font-semibold text-white">+${batteryAddonPrice}</span>
-                    </div>
-                  )}
-                  {orderData.deliverySpeed === "24hr" && (
-                    <div className="flex justify-between">
-                      <span className="text-slate-400">24-Hour Express Speed</span>
-                      <span className="font-semibold text-emerald-400">+${expressFee}</span>
-                    </div>
+                )}
+
+                {/* Stepper Navigation Buttons */}
+                <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                  {stage > 1 ? (
+                    <button
+                      type="button"
+                      onClick={() => setStage(stage - 1)}
+                      className="px-5 py-2.5 rounded-xl text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 flex items-center gap-1.5 transition-colors"
+                    >
+                      <ArrowLeft className="w-3.5 h-3.5" />
+                      Back
+                    </button>
+                  ) : <div />}
+
+                  {stage < 5 ? (
+                    <button
+                      type="button"
+                      onClick={() => setStage(stage + 1)}
+                      className="px-7 py-2.5 rounded-xl text-xs font-bold text-white bg-slate-950 hover:bg-slate-800 flex items-center gap-1.5 transition-all shadow-xs"
+                    >
+                      Continue
+                      <ArrowRight className="w-3.5 h-3.5 text-orange-400" />
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="px-8 py-3 rounded-xl text-xs font-bold text-white bg-[#E6561B] hover:bg-[#D4470F] flex items-center gap-2 transition-all shadow-md hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60"
+                    >
+                      {isSubmitting ? "Submitting Planset Order..." : `Place Order ($${totalPrice})`}
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
                   )}
                 </div>
 
-                <div className="flex justify-between items-baseline mb-6">
-                  <span className="text-xs font-bold text-slate-300">Total Order Price:</span>
-                  <span className="text-3xl font-extrabold text-emerald-400">${totalPrice}</span>
-                </div>
-
-                <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-[11px] text-slate-400 space-y-2">
-                  <div className="flex items-center gap-1.5 text-emerald-400 font-semibold">
-                    <ShieldCheck className="w-4 h-4" />
-                    SunPermit 100% AHJ Approval Guarantee
-                  </div>
-                  <p>Unlimited revisions until local building department permit approval.</p>
-                </div>
-              </div>
-
-              {/* Help & Support Card */}
-              <div className="rounded-2xl p-5 bg-slate-900/60 border border-slate-800 text-xs space-y-2">
-                <span className="font-bold text-white block">Need Express Assistance?</span>
-                <p className="text-slate-400">Call SunPermit senior CAD engineering hotline:</p>
-                <span className="font-bold text-cyan-400 block text-sm">1-800-SUN-PERMIT</span>
-              </div>
-
-            </div>
+              </form>
+            )}
 
           </div>
 
+          {/* Sidebar Live Pricing Calculator */}
+          <div className="lg:col-span-4 rounded-3xl p-6 bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between h-fit space-y-6">
+            <div>
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-950 flex items-center gap-1.5">
+                  <DollarSign className="w-4 h-4 text-orange-600" />
+                  Order Summary
+                </h4>
+                <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
+                  Flat-Rate
+                </span>
+              </div>
+
+              <div className="space-y-2.5 py-4 text-xs">
+                <div className="flex justify-between text-slate-700">
+                  <span>Base Permit Planset</span>
+                  <span className="font-semibold text-slate-950">$149.00</span>
+                </div>
+
+                {orderData.needElectricalPe && (
+                  <div className="flex justify-between text-slate-700">
+                    <span>Electrical PE Stamp</span>
+                    <span className="font-semibold text-slate-950">+$99.00</span>
+                  </div>
+                )}
+
+                {orderData.needStructuralPe && (
+                  <div className="flex justify-between text-slate-700">
+                    <span>Structural PE Stamp</span>
+                    <span className="font-semibold text-slate-950">+$100.00</span>
+                  </div>
+                )}
+
+                {orderData.hasBattery && (
+                  <div className="flex justify-between text-slate-700">
+                    <span>Battery Storage Addon</span>
+                    <span className="font-semibold text-slate-950">+$99.00</span>
+                  </div>
+                )}
+
+                {orderData.deliverySpeed === "24hr" && (
+                  <div className="flex justify-between text-slate-700">
+                    <span>24-Hour Express SLA</span>
+                    <span className="font-semibold text-slate-950">+$50.00</span>
+                  </div>
+                )}
+
+                <div className="pt-3 border-t border-slate-100 flex justify-between items-baseline font-bold text-base">
+                  <span className="text-slate-950">Total:</span>
+                  <span className="text-2xl font-extrabold text-orange-600">${totalPrice}.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3 pt-3 border-t border-slate-100 text-xs text-slate-600">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Unlimited Free AHJ Revisions</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Guaranteed 24-Hour Delivery</span>
+              </div>
+            </div>
+          </div>
+
         </div>
+
       </main>
 
       <Footer />

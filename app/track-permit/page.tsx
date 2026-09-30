@@ -18,7 +18,8 @@ import {
   ArrowRight,
   ExternalLink,
   ChevronRight,
-  Layers
+  Layers,
+  Compass
 } from "lucide-react";
 
 const mockPermits: Record<string, any> = {
@@ -66,16 +67,36 @@ const mockPermits: Record<string, any> = {
 
 function PermitTrackerContent() {
   const searchParams = useSearchParams();
-  const initialId = searchParams.get("id") || "SP-89412";
-  const [searchId, setSearchId] = useState(initialId);
-  const [activePermit, setActivePermit] = useState<any>(mockPermits[initialId] || mockPermits["SP-89412"]);
+  const urlId = searchParams.get("id");
+
+  const [searchId, setSearchId] = useState(urlId || "SP-89412");
+  const [activePermit, setActivePermit] = useState<any>(mockPermits["SP-89412"]);
 
   useEffect(() => {
-    if (initialId && mockPermits[initialId]) {
-      setActivePermit(mockPermits[initialId]);
-      setSearchId(initialId);
+    if (urlId) {
+      setSearchId(urlId);
+      setActivePermit(mockPermits[urlId.toUpperCase()] || {
+        id: urlId.toUpperCase(),
+        customer: "Residential Solar Installation",
+        address: "742 Evergreen Terrace, Austin, TX",
+        ahj: "Austin Energy Building Dept",
+        utility: "Austin Energy",
+        system: "11.4 kW Solar PV System",
+        status: "Engineering Review in Progress",
+        stage: 2,
+        turnaround: "Processing (ETA 3.5 hrs)",
+        submittedAt: "Today",
+        peStamps: ["50-State PE Certified"],
+        timeline: [
+          { step: "Order Received", done: true, time: "09:00 AM" },
+          { step: "Site Survey Review", done: true, time: "10:15 AM" },
+          { step: "Single-Line CAD Drafting", done: true, time: "In Progress" },
+          { step: "PE Structural & Electrical Stamps", done: false, time: "Pending" },
+          { step: "Permit Package Ready for AHJ", done: false, time: "Pending" }
+        ]
+      });
     }
-  }, [initialId]);
+  }, [urlId]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,18 +124,18 @@ function PermitTrackerContent() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto w-full">
       
       {/* Search Header */}
       <div className="text-center mb-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400 mb-4">
-          <Search className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-xs font-bold text-orange-700 uppercase tracking-wider mb-4">
+          <Compass className="w-3.5 h-3.5 text-orange-600" />
           SUNPERMIT REAL-TIME TRACKER
         </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight">
           Track Permit Status
         </h1>
-        <p className="mt-3 text-slate-400 text-sm max-w-xl mx-auto">
+        <p className="mt-3 text-slate-600 text-sm max-w-xl mx-auto font-normal">
           Enter your SunPermit Tracking ID to check live CAD drafting progress, PE engineering stamp verification, and download permit files.
         </p>
 
@@ -126,18 +147,18 @@ function PermitTrackerContent() {
             value={searchId}
             onChange={(e) => setSearchId(e.target.value)}
             placeholder="Enter Permit ID (e.g. SP-89412)..."
-            className="w-full pl-11 pr-28 py-3.5 bg-slate-900 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 shadow-xl"
+            className="w-full pl-11 pr-28 py-3.5 bg-white border border-slate-300 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-orange-500 shadow-sm"
           />
           <button
             type="submit"
-            className="absolute right-2 px-5 py-2 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs rounded-lg transition-all"
+            className="absolute right-2 px-5 py-2 bg-slate-950 hover:bg-slate-800 text-white font-bold text-xs rounded-lg transition-all"
           >
             Lookup
           </button>
         </form>
 
         {/* Sample ID buttons */}
-        <div className="mt-3 flex items-center justify-center gap-2 text-xs text-slate-400">
+        <div className="mt-3 flex items-center justify-center gap-2 text-xs text-slate-500">
           <span>Try sample IDs:</span>
           {["SP-89412", "SP-89411"].map((id) => (
             <button
@@ -146,7 +167,7 @@ function PermitTrackerContent() {
                 setSearchId(id);
                 setActivePermit(mockPermits[id]);
               }}
-              className="text-emerald-400 hover:underline font-semibold"
+              className="text-orange-600 hover:underline font-bold"
             >
               {id}
             </button>
@@ -156,24 +177,24 @@ function PermitTrackerContent() {
 
       {/* Permit Details Result Card */}
       {activePermit && (
-        <div className="rounded-2xl p-6 sm:p-8 bg-slate-900/80 border border-slate-800 shadow-2xl backdrop-blur-xl space-y-8">
+        <div className="rounded-3xl p-6 sm:p-8 bg-white border border-slate-200/90 shadow-sm space-y-8">
           
           {/* Top Status Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
             <div>
               <div className="flex items-center gap-3">
-                <span className="text-xl font-bold text-white">{activePermit.id}</span>
-                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                <span className="text-2xl font-extrabold text-slate-950">{activePermit.id}</span>
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700 border border-orange-200">
                   {activePermit.status}
                 </span>
               </div>
-              <p className="text-xs text-slate-400 mt-1">{activePermit.customer} • {activePermit.address}</p>
+              <p className="text-xs text-slate-500 mt-1 font-medium">{activePermit.customer} • {activePermit.address}</p>
             </div>
 
             <div className="flex items-center gap-3">
               <button
                 onClick={() => alert(`Downloading sample permit package PDF for ${activePermit.id}...`)}
-                className="px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 flex items-center gap-2 shadow-md"
+                className="px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-[#E6561B] hover:bg-[#D4470F] flex items-center gap-2 shadow-xs transition-colors"
               >
                 <Download className="w-3.5 h-3.5" /> Download Permit PDF
               </button>
@@ -182,42 +203,42 @@ function PermitTrackerContent() {
 
           {/* Key Metrics Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
-            <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span className="text-slate-400 block mb-0.5">AHJ Jurisdiction</span>
-              <span className="font-semibold text-white block">{activePermit.ahj}</span>
+            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-slate-200/80">
+              <span className="text-slate-500 block mb-0.5">AHJ Jurisdiction</span>
+              <span className="font-bold text-slate-900 block">{activePermit.ahj}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span className="text-slate-400 block mb-0.5">Electric Utility</span>
-              <span className="font-semibold text-white block">{activePermit.utility}</span>
+            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-slate-200/80">
+              <span className="text-slate-500 block mb-0.5">Electric Utility</span>
+              <span className="font-bold text-slate-900 block">{activePermit.utility}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span className="text-slate-400 block mb-0.5">System Specs</span>
-              <span className="font-semibold text-white block">{activePermit.system}</span>
+            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-slate-200/80">
+              <span className="text-slate-500 block mb-0.5">System Specs</span>
+              <span className="font-bold text-slate-900 block">{activePermit.system}</span>
             </div>
-            <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800">
-              <span className="text-slate-400 block mb-0.5">Turnaround Speed</span>
-              <span className="font-semibold text-emerald-400 block">{activePermit.turnaround}</span>
+            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-slate-200/80">
+              <span className="text-slate-500 block mb-0.5">Turnaround Speed</span>
+              <span className="font-bold text-emerald-600 block">{activePermit.turnaround}</span>
             </div>
           </div>
 
           {/* Live Workflow Timeline */}
           <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-              <Clock className="w-4 h-4 text-emerald-400" />
+            <h3 className="text-sm font-bold text-slate-950 uppercase tracking-wider mb-5 flex items-center gap-2">
+              <Clock className="w-4 h-4 text-orange-600" />
               Live Drafting &amp; Engineering Progress
             </h3>
 
-            <div className="relative pl-6 space-y-6 border-l-2 border-slate-800">
+            <div className="relative pl-6 space-y-6 border-l-2 border-slate-200">
               {activePermit.timeline.map((item: any, idx: number) => (
                 <div key={idx} className="relative flex items-center justify-between">
                   <div
                     className={`absolute -left-[31px] w-4 h-4 rounded-full border-2 ${
                       item.done
-                        ? "bg-emerald-500 border-emerald-400"
-                        : "bg-slate-950 border-slate-700"
+                        ? "bg-emerald-500 border-white shadow-xs"
+                        : "bg-slate-200 border-white"
                     }`}
                   />
-                  <span className={`text-xs font-semibold ${item.done ? "text-white" : "text-slate-500"}`}>
+                  <span className={`text-xs font-semibold ${item.done ? "text-slate-900 font-bold" : "text-slate-400"}`}>
                     {item.step}
                   </span>
                   <span className="text-[11px] text-slate-500 font-mono">{item.time}</span>
@@ -227,17 +248,19 @@ function PermitTrackerContent() {
           </div>
 
           {/* PE Engineering Stamps Verification Box */}
-          <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 flex items-center justify-between text-xs">
+          <div className="p-4 rounded-xl bg-orange-50/60 border border-orange-200 flex items-center justify-between text-xs">
             <div className="flex items-center gap-3">
-              <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
+              <ShieldCheck className="w-5 h-5 text-orange-600 shrink-0" />
               <div>
-                <span className="font-bold text-white block">PE Engineer Verification</span>
-                <span className="text-slate-400">
+                <span className="font-bold text-slate-900 block">PE Engineer Verification</span>
+                <span className="text-slate-600">
                   {activePermit.peStamps.join(" • ")}
                 </span>
               </div>
             </div>
-            <span className="text-emerald-400 font-semibold text-[11px]">Verified Seal ✓</span>
+            <span className="text-emerald-700 font-bold text-[11px] bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-200">
+              Verified Seal ✓
+            </span>
           </div>
 
         </div>
@@ -249,10 +272,10 @@ function PermitTrackerContent() {
 
 export default function TrackPermitPage() {
   return (
-    <div className="min-h-screen bg-[#070A12] text-slate-100 flex flex-col">
+    <div className="min-h-screen bg-[#FAF7F2] text-slate-900 flex flex-col selection:bg-orange-500 selection:text-white">
       <Navbar />
-      <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 bg-grid-pattern relative">
-        <Suspense fallback={<div className="text-center text-slate-400 py-12">Loading tracker...</div>}>
+      <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8">
+        <Suspense fallback={<div className="text-center text-slate-500 py-12">Loading tracker...</div>}>
           <PermitTrackerContent />
         </Suspense>
       </main>
