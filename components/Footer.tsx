@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import SunPermitLogo from "@/components/SunPermitLogo";
 import { ArrowUp, Sparkles, Phone } from "lucide-react";
 
 export default function Footer() {
@@ -20,6 +21,9 @@ export default function Footer() {
           
           {/* ─── Column 1: Value Proposition & Bundle CTA (from Screenshot 2) ─── */}
           <div className="lg:col-span-5 space-y-5">
+            <div className="mb-2">
+              <SunPermitLogo height={42} />
+            </div>
             <div>
               <span className="text-[11px] font-bold text-orange-600 uppercase tracking-widest bg-orange-50 px-2.5 py-1 rounded-full border border-orange-200">
                 Volume Bundles
