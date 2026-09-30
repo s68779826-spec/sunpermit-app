@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import SunPermitLogo from "@/components/SunPermitLogo";
 import {
   Search,
   MapPin,
@@ -62,16 +63,7 @@ export default function SolarAnalyticsHero() {
         <nav className="bg-white/90 backdrop-blur-md border border-slate-200/80 rounded-2xl shadow-sm px-5 sm:px-8 py-3.5 flex items-center justify-between transition-all">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 p-[2px] shadow-sm flex items-center justify-center">
-              <div className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden">
-                <div className="w-4 h-4 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 -translate-x-1" />
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-extrabold tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors">
-                SUN<span className="text-orange-500">PERMIT</span>
-              </span>
-            </div>
+            <SunPermitLogo height={38} />
           </Link>
 
           {/* Center Links from sunpermit.com */}
@@ -92,10 +84,10 @@ export default function SolarAnalyticsHero() {
               Login
             </Link>
             <Link
-              href="/request-permit"
+              href="/quick"
               className="bg-slate-950 hover:bg-slate-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
-              Get a Quote
+              Get started
             </Link>
           </div>
         </nav>
@@ -138,7 +130,7 @@ export default function SolarAnalyticsHero() {
               className="flex items-center gap-6 pt-2"
             >
               <Link
-                href="/request-permit"
+                href="/quick"
                 className="bg-slate-950 hover:bg-slate-800 text-white text-base font-semibold px-7 py-3.5 rounded-xl shadow-lg shadow-slate-950/15 transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 Get started

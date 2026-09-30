@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import SunPermitLogo from "@/components/SunPermitLogo";
 import {
   Phone,
   Mail,
@@ -249,14 +250,7 @@ export default function ContactSection() {
           
           {/* Left Brand Logo (from Screenshot 1) */}
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 p-[2px] shadow-sm flex items-center justify-center">
-              <div className="w-full h-full bg-white rounded-full flex items-center justify-center overflow-hidden">
-                <div className="w-4 h-4 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 -translate-x-1" />
-              </div>
-            </div>
-            <span className="text-xl font-extrabold tracking-tight text-slate-900">
-              SUN<span className="text-orange-500">PERMIT</span>
-            </span>
+            <SunPermitLogo height={40} />
           </Link>
 
           {/* Right Direct Contact Info (from Screenshot 1) */}
