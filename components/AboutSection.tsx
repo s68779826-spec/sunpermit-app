@@ -156,11 +156,11 @@ export default function AboutSection() {
             transition={{ duration: 0.2 }}
             className="relative rounded-[28px] overflow-hidden shadow-xl border border-slate-200/80 min-h-[380px] flex flex-col justify-between p-6 sm:p-7 group"
           >
-            {/* Background Solar Panels Image with Sunset Glow */}
+            {/* Background Solar Panels Image (User Uploaded) */}
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
               style={{
-                backgroundImage: `url('https://images.unsplash.com/photo-1509391365360-2e959784a276?q=80&w=1000&auto=format&fit=crop')`,
+                backgroundImage: `url('/images/environmental-impact-panels.jpg')`,
               }}
             />
             {/* Gradient Overlay */}
