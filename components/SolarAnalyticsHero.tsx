@@ -99,12 +99,14 @@ export default function SolarAnalyticsHero() {
 
       {/* ─── Main Hero Content Grid ─── */}
  {/* ─── Main Hero Content Grid ─── */}
-<main className="relative z-10 max-w-[1380px] mx-auto px-6 sm:px-10 lg:px-14 pt-10 lg:pt-16 pb-16 lg:pb-24 overflow-hidden">
-  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
+<main className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 pt-10 lg:pt-14 pb-16 lg:pb-24 overflow-hidden">
+<div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-center min-h-[560px]">
+
+
           
           {/* ─── Left Column: Headline, Subtitle, CTAs ─── */}
-       {/* ─── Left Column: Headline, Subtitle, CTAs ─── */}
-<div className="lg:col-span-5 flex flex-col justify-center space-y-6 max-w-[500px] lg:max-w-none lg:pr-4">
+      <div className="lg:col-span-5 flex flex-col justify-center space-y-6 max-w-[500px] lg:max-w-[540px] lg:pr-0 relative z-20">
+
             
             {/* Main Headline */}
             <motion.h1 
@@ -164,15 +166,18 @@ export default function SolarAnalyticsHero() {
           </div>
 
           {/* ─── Right Column: High-Fidelity Floating iPad Dashboard Mockup ─── */}
-    <div className="lg:col-span-7 relative flex justify-center lg:justify-end items-center">
+  <div className="lg:col-span-7 relative flex justify-center lg:justify-end items-center">
+
   <motion.div
     initial={{ opacity: 0, scale: 0.96, y: 30 }}
     animate={{ opacity: 1, scale: 1, y: 0 }}
     transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-    className="relative w-full sm:w-[108%] lg:w-[115%] max-w-[760px] lg:-mr-8 xl:-mr-12"
+   className="relative w-full sm:w-[115%] lg:w-[125%] max-w-[820px] lg:-mr-20 xl:-mr-28"
+
   >
               {/* Sleek Tablet Frame */}
-              <div className="relative rounded-[36px] p-3 sm:p-4 bg-gradient-to-b from-slate-800 via-slate-900 to-black shadow-[0_30px_90px_rgba(0,0,0,0.35)] border border-slate-700/60 ring-1 ring-white/10">
+<div className="relative rounded-[28px] p-3 sm:p-4 bg-gradient-to-b from-slate-800 via-slate-900 to-black shadow-[0_30px_90px_rgba(0,0,0,0.35)] border border-slate-700/60 ring-1 ring-white/10">
+
                 
                 {/* Tablet Camera / Sensor Pill */}
                 <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-2 bg-slate-900 rounded-full flex items-center justify-center gap-2">
@@ -181,7 +186,8 @@ export default function SolarAnalyticsHero() {
                 </div>
 
                 {/* Tablet Screen Container */}
-                <div className="relative rounded-[26px] bg-[#0A0E1A] overflow-hidden border border-white/[0.06] text-slate-200">
+               <div className="relative rounded-[20px] bg-[#0A0E1A] ...
+
                   
                   {/* Dashboard Top Bar */}
                   <div className="flex items-center justify-between px-4 py-2.5 bg-[#0D1322] border-b border-white/[0.06] text-[11px] text-slate-400">
