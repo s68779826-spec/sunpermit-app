@@ -425,6 +425,72 @@ export default function SolarAnalyticsHero() {
 
         </div>
 
+        {/* ─── Bottom Accreditation Logos Row (Matches Screenshot) ─── */}
+        <div className="mt-16 pt-8 border-t border-slate-900/10">
+          <div className="flex flex-wrap items-center justify-between gap-8 sm:gap-12 opacity-85 hover:opacity-100 transition-opacity">
+            {/* NABCEP */}
+            <div className="h-12 sm:h-14 flex items-center justify-center">
+              <img
+                src="/images/accreditations/nabcep.png"
+                alt="NABCEP Certified PV Installation Professional"
+                className="h-full w-auto object-contain brightness-90 contrast-125"
+              />
+            </div>
+
+            {/* LG Chem */}
+            <div className="h-12 sm:h-14 flex items-center justify-center">
+              <img
+                src="/images/accreditations/lg-chem.png"
+                alt="LG Chem Certified Installer"
+                className="h-full w-auto object-contain brightness-90 contrast-125"
+              />
+            </div>
+
+            {/* ENPHASE */}
+            <div className="h-9 sm:h-11 flex items-center justify-center">
+              <img
+                src="/images/accreditations/enphase.png"
+                alt="Enphase"
+                className="h-full w-auto object-contain brightness-90 contrast-125"
+              />
+            </div>
+
+            {/* EverVolt */}
+            <div className="h-10 sm:h-12 flex items-center justify-center">
+              <img
+                src="/images/accreditations/evervolt.png"
+                alt="EverVolt Certified Installer"
+                className="h-full w-auto object-contain brightness-90 contrast-125"
+              />
+            </div>
+
+            {/* Drone Pilot */}
+            <div className="h-12 sm:h-14 flex items-center justify-center">
+              <div className="flex flex-col items-center justify-center text-center">
+                <div className="w-10 h-10 rounded-full border-2 border-slate-900/80 flex items-center justify-center p-1">
+                  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-none stroke-slate-900 stroke-2">
+                    <circle cx="12" cy="12" r="3" />
+                    <circle cx="6" cy="6" r="2" />
+                    <circle cx="18" cy="6" r="2" />
+                    <circle cx="6" cy="18" r="2" />
+                    <circle cx="18" cy="18" r="2" />
+                    <line x1="8" y1="8" x2="10" y2="10" />
+                    <line x1="16" y1="8" x2="14" y2="10" />
+                    <line x1="8" y1="16" x2="10" y2="14" />
+                    <line x1="16" y1="16" x2="14" y2="14" />
+                  </svg>
+                </div>
+                <span className="text-[9px] font-extrabold uppercase tracking-tight text-slate-900 mt-1 leading-none">
+                  Drone Pilot
+                </span>
+                <span className="text-[7px] font-bold text-slate-700 tracking-wider">
+                  TRAINING
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </main>
     </div>
   );
