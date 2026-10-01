@@ -98,11 +98,13 @@ export default function SolarAnalyticsHero() {
       </header>
 
       {/* ─── Main Hero Content Grid ─── */}
-   <main className="relative z-10 max-w-[1340px] mx-auto px-6 sm:px-8 lg:px-12 pt-16 lg:pt-20 pb-16 lg:pb-24">
-  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+ {/* ─── Main Hero Content Grid ─── */}
+<main className="relative z-10 max-w-[1380px] mx-auto px-6 sm:px-10 lg:px-14 pt-10 lg:pt-16 pb-16 lg:pb-24 overflow-hidden">
+  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
           
           {/* ─── Left Column: Headline, Subtitle, CTAs ─── */}
-         <div className="lg:col-span-5 flex flex-col justify-center space-y-6 max-w-xl">
+       {/* ─── Left Column: Headline, Subtitle, CTAs ─── */}
+<div className="lg:col-span-5 flex flex-col justify-center space-y-6 max-w-[500px] lg:max-w-none lg:pr-4">
             
             {/* Main Headline */}
             <motion.h1 
@@ -162,12 +164,12 @@ export default function SolarAnalyticsHero() {
           </div>
 
           {/* ─── Right Column: High-Fidelity Floating iPad Dashboard Mockup ─── */}
-         <div className="lg:col-span-7 relative flex justify-end items-center">
+    <div className="lg:col-span-7 relative flex justify-center lg:justify-end items-center">
   <motion.div
     initial={{ opacity: 0, scale: 0.96, y: 30 }}
     animate={{ opacity: 1, scale: 1, y: 0 }}
     transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-    className="relative w-full max-w-[680px] lg:translate-x-2"
+    className="relative w-full sm:w-[108%] lg:w-[115%] max-w-[760px] lg:-mr-8 xl:-mr-12"
   >
               {/* Sleek Tablet Frame */}
               <div className="relative rounded-[36px] p-3 sm:p-4 bg-gradient-to-b from-slate-800 via-slate-900 to-black shadow-[0_30px_90px_rgba(0,0,0,0.35)] border border-slate-700/60 ring-1 ring-white/10">
