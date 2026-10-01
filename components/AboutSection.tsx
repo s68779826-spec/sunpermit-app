@@ -34,36 +34,7 @@ export default function AboutSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* ─── Top Header (Matches Screenshot 1 Structure with Screenshot 2 Content) ─── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
-          {/* Left Tag */}
-          <div className="lg:col-span-4">
-            <div className="inline-flex items-center gap-2 text-xs font-bold tracking-wider text-slate-700 uppercase">
-              <span className="w-2 h-2 rounded-full bg-slate-900 animate-pulse" />
-              Unlock the full potential of solar energy.
-            </div>
-            <div className="mt-4">
-              <span className="text-xs font-bold text-orange-600 tracking-widest uppercase bg-orange-100/80 px-3 py-1 rounded-full border border-orange-200">
-                About SunPermit
-              </span>
-            </div>
-          </div>
-
-          {/* Right Main Heading & Subtext (Exact text from Screenshot 2) */}
-          <div className="lg:col-span-8 space-y-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-950 leading-[1.15]">
-              NOT A SEPARATE TEAM, WE ARE{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-amber-500">
-                PART OF YOU!
-              </span>
-            </h2>
-            <p className="text-base sm:text-lg text-slate-700 leading-relaxed max-w-3xl font-normal">
-              The increasing demand for getting climate-friendly life and the heading toward renewable energy revolutionized the solar industry. Dealing with more clients means more revenue and yes more project management.
-            </p>
-          </div>
-        </div>
-
-        {/* ─── 3 Feature Cards (Matches Screenshot 1 Exactly) ─── */}
+        {/* ─── 3 Feature Cards ─── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           
           {/* ─── Card 1: Dark Analytics Card with Line Chart & 84% Badge ─── */}
