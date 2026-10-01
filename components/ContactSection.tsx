@@ -83,9 +83,13 @@ export default function ContactSection() {
                 ENGINEERING CONSULTATION
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.12]">
-                Uncertain about some technical aspects within your project?{" "}
+                Uncertain about some
+technical aspects within
+your project?{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">
-                  Need a consultation from our Engineer?
+                  Need a
+consultation from our
+Engineer?
                 </span>
               </h2>
             </motion.div>
@@ -244,39 +248,6 @@ export default function ContactSection() {
         </div>
       </div>
 
-      {/* ─── Bottom White Bar (Matches Screenshot 1 Exactly) ─── */}
-      <div className="w-full bg-white text-slate-950 py-10 px-4 sm:px-6 lg:px-8 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          
-          {/* Left Brand Logo (from Screenshot 1) */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <SunPermitLogo height={40} />
-          </Link>
-
-          {/* Right Direct Contact Info (from Screenshot 1) */}
-          <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-12 text-center sm:text-right">
-            <div>
-              <p className="text-xs uppercase tracking-wider text-slate-500 font-bold">Call Us Direct</p>
-              <a 
-                href="tel:+1-832-756-8368" 
-                className="text-xl sm:text-2xl font-extrabold text-slate-950 hover:text-orange-600 transition-colors tracking-tight"
-              >
-                +1 (832) 756-8368
-              </a>
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-wider text-slate-500 font-bold">Email Support</p>
-              <a 
-                href="mailto:support@sunpermit.com" 
-                className="text-lg sm:text-xl font-bold text-slate-950 hover:text-orange-600 transition-colors"
-              >
-                support@sunpermit.com
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
 
       {/* ─── Interactive Contact / Lead Modal ─── */}
       {modalOpen && (
