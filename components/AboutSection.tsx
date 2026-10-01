@@ -233,35 +233,10 @@ export default function AboutSection() {
 
         </div>
 
-        {/* ─── Bottom Navigation Bar (Matches Screenshot 1) ─── */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-slate-900/10">
+        {/* ─── Bottom Navigation Bar ─── */}
+        <div className="mt-12 flex items-center justify-end gap-6 pt-6 border-t border-slate-900/10">
           
-          {/* Left: Tag + Social Media Links (from Screenshot 2) */}
-          <div className="flex flex-wrap items-center gap-6 text-xs font-bold tracking-wider text-slate-800">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-slate-900" />
-              Explore the Dashboard in Action
-            </div>
-
-            {/* Social Icons from Screenshot 2 */}
-            <div className="flex items-center gap-3 pl-4 border-l border-slate-300 text-slate-600">
-              <a href="https://www.facebook.com/sunpermit" target="_blank" rel="noreferrer" className="hover:text-orange-600 transition-colors">
-                Facebook
-              </a>
-              <span className="text-slate-300">•</span>
-              <a href="https://instagram.com/sunpermit" target="_blank" rel="noreferrer" className="hover:text-orange-600 transition-colors">
-                Instagram
-              </a>
-              <span className="text-slate-300">•</span>
-              <a href="https://twitter.com/sunpermit" target="_blank" rel="noreferrer" className="hover:text-orange-600 transition-colors">
-                Twitter
-              </a>
-              <span className="text-slate-300">•</span>
-              <a href="https://www.linkedin.com/company/sunpermit" target="_blank" rel="noreferrer" className="hover:text-orange-600 transition-colors">
-                LinkedIn
-              </a>
-            </div>
-          </div>
+          {/* Removed text block from screenshot 3 as requested */}
 
           {/* Right: Round Arrow Buttons */}
           <div className="flex items-center gap-3">

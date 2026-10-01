@@ -421,90 +421,15 @@ export default function SolarAnalyticsHero() {
 
                     </div>
 
-                    {/* Right 3D Visualizer Area: Glowing Faceted Solar Crystal (Matches Screenshot) */}
-                    <div className="hidden sm:flex flex-1 relative bg-[#070A12] overflow-hidden items-center justify-center p-6">
-                      
-                      {/* Dark grid / satellite map lines background */}
-                      <div className="absolute inset-0 opacity-15">
-                        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                          <pattern id="mapgrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#60A5FA" strokeWidth="0.5" />
-                          </pattern>
-                          <rect width="100%" height="100%" fill="url(#mapgrid)" />
-                          <path d="M 0 100 Q 150 50 300 250" fill="none" stroke="#F59E0B" strokeWidth="0.8" opacity="0.4" />
-                          <path d="M 50 0 L 250 300" fill="none" stroke="#F59E0B" strokeWidth="0.8" opacity="0.3" />
-                        </svg>
+                    {/* Right 3D Visualizer Area: Glowing Faceted Solar Crystal (Matches Screenshot 1) */}
+                    <div className="hidden sm:flex flex-1 relative bg-[#070A12] overflow-hidden items-center justify-center p-3">
+                      <div className="relative z-10 w-full h-full min-h-[300px] flex items-center justify-center">
+                        <img
+                          src="/images/hero-3d-cube.jpg"
+                          alt="Solar Analytics 3D Model"
+                          className="w-full max-w-[280px] h-auto object-contain rounded-2xl drop-shadow-[0_20px_40px_rgba(235,94,36,0.45)]"
+                        />
                       </div>
-
-                      {/* Ambient Crystal Glow */}
-                      <div className="absolute w-56 h-56 rounded-full bg-gradient-to-tr from-orange-500 via-amber-500 to-fuchsia-600 blur-3xl opacity-45 pointer-events-none" />
-
-                      {/* High-Fidelity 3D Faceted Glowing Geometric Crystal Model */}
-                      <motion.div
-                        animate={{ 
-                          rotateY: [0, 8, 0, -8, 0],
-                          rotateX: [0, 4, 0, -4, 0],
-                          y: [0, -6, 0, 6, 0]
-                        }}
-                        transition={{ 
-                          duration: 8, 
-                          repeat: Infinity, 
-                          ease: "easeInOut" 
-                        }}
-                        className="relative z-10 w-44 h-44 sm:w-52 sm:h-52 drop-shadow-[0_20px_40px_rgba(235,94,36,0.45)]"
-                      >
-                        <svg viewBox="0 0 200 200" className="w-full h-full">
-                          <defs>
-                            {/* Crystal Facet Gradients */}
-                            <linearGradient id="facet1" x1="0" y1="0" x2="1" y2="1">
-                              <stop offset="0%" stopColor="#FEF08A" />
-                              <stop offset="100%" stopColor="#F97316" />
-                            </linearGradient>
-                            <linearGradient id="facet2" x1="1" y1="0" x2="0" y2="1">
-                              <stop offset="0%" stopColor="#F59E0B" />
-                              <stop offset="100%" stopColor="#DC2626" />
-                            </linearGradient>
-                            <linearGradient id="facet3" x1="0" y1="1" x2="1" y2="0">
-                              <stop offset="0%" stopColor="#7C3AED" />
-                              <stop offset="100%" stopColor="#EC4899" />
-                            </linearGradient>
-                            <linearGradient id="facet4" x1="0" y1="0" x2="1" y2="1">
-                              <stop offset="0%" stopColor="#FBBF24" />
-                              <stop offset="100%" stopColor="#EA580C" />
-                            </linearGradient>
-                            <linearGradient id="facet5" x1="1" y1="1" x2="0" y2="0">
-                              <stop offset="0%" stopColor="#4C1D95" />
-                              <stop offset="100%" stopColor="#9333EA" />
-                            </linearGradient>
-                            <linearGradient id="facet6" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="0%" stopColor="#FDE047" />
-                              <stop offset="100%" stopColor="#F97316" />
-                            </linearGradient>
-                          </defs>
-
-                          {/* Outer Purple/Magenta Shadow Wings */}
-                          <polygon points="100,15 175,55 185,115 100,100" fill="url(#facet3)" opacity="0.9" />
-                          <polygon points="100,15 25,55 15,115 100,100" fill="url(#facet5)" opacity="0.85" />
-                          <polygon points="15,115 100,185 100,100" fill="url(#facet3)" opacity="0.9" />
-                          <polygon points="185,115 100,185 100,100" fill="url(#facet5)" opacity="0.85" />
-
-                          {/* Central Glowing Gold / Orange Faceted Cube Body */}
-                          <polygon points="100,35 155,70 100,105 45,70" fill="url(#facet1)" />
-                          <polygon points="155,70 155,135 100,170 100,105" fill="url(#facet2)" />
-                          <polygon points="45,70 100,105 100,170 45,135" fill="url(#facet4)" />
-
-                          {/* Inner Inverted Facet Chamber (Hollow glowing core) */}
-                          <polygon points="100,85 130,102 100,120 70,102" fill="#0A0E1A" opacity="0.95" />
-                          <polygon points="100,85 130,102 130,125 100,108" fill="url(#facet6)" opacity="0.6" />
-                          <polygon points="70,102 100,85 100,108 70,125" fill="url(#facet2)" opacity="0.6" />
-
-                          {/* Specular Edge Highlights */}
-                          <line x1="100" y1="35" x2="155" y2="70" stroke="#FFF" strokeWidth="1.2" opacity="0.8" />
-                          <line x1="100" y1="35" x2="45" y2="70" stroke="#FFF" strokeWidth="1.2" opacity="0.8" />
-                          <line x1="100" y1="35" x2="100" y2="105" stroke="#FFE4E6" strokeWidth="1" opacity="0.7" />
-                        </svg>
-                      </motion.div>
-
                     </div>
 
                   </div>
@@ -517,62 +442,14 @@ export default function SolarAnalyticsHero() {
 
         </div>
 
-        {/* ─── Bottom Social Proof Brand Logos Row (Matches Screenshot) ─── */}
-        <div className="mt-16 pt-10 border-t border-slate-900/10">
-          <div className="flex flex-wrap items-center justify-between gap-8 sm:gap-12 opacity-70 grayscale contrast-125 hover:grayscale-0 transition-all">
-            
-            {/* Uber */}
-            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 font-sans">
-              Uber
-            </span>
-
-            {/* amazon */}
-            <span className="text-2xl sm:text-3xl font-extrabold tracking-tighter text-slate-900 font-sans lowercase">
-              amazon
-            </span>
-
-            {/* NETFLIX */}
-            <span className="text-2xl sm:text-3xl font-black tracking-wider text-slate-900 font-sans uppercase">
-              NETFLIX
-            </span>
-
-            {/* airbnb */}
-            <div className="flex items-center gap-1.5 text-2xl sm:text-3xl font-bold text-slate-900">
-              <svg className="w-6 h-6 fill-current" viewBox="0 0 32 32">
-                <path d="M16 1c-4.4 0-8 3.6-8 8 0 5.4 6.8 14.6 7.4 15.4.3.4.9.6 1.4.4.2-.1.4-.2.6-.4.6-.8 7.4-10 7.4-15.4 0-4.4-3.6-8-8-8zm0 11.5c-1.9 0-3.5-1.6-3.5-3.5S14.1 5.5 16 5.5s3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z"/>
-              </svg>
-              <span>airbnb</span>
-            </div>
-
-            {/* Apple */}
-            <div className="flex items-center gap-1 text-2xl sm:text-3xl font-semibold text-slate-900">
-              <svg className="w-6 h-6 fill-current" viewBox="0 0 170 170">
-                <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.08-7.7-7.94-12.04-14.58-6.19-9.44-11.04-20.59-14.55-33.44-3.51-12.85-5.27-24.96-5.27-36.33 0-15.65 4.13-28.71 12.41-39.18 8.28-10.47 18.77-15.82 31.45-16.06 4.91 0 10.42 1.34 16.53 4.02 6.11 2.68 10.23 4.08 12.37 4.19 1.8 0 6.13-1.45 12.99-4.36 6.86-2.91 12.73-4.14 17.61-3.69 13.06 1.09 23.36 5.86 30.9 14.31-11.53 7.02-17.18 16.64-16.94 28.86.24 9.68 4.03 17.76 11.37 24.23 7.34 6.47 15.93 10.2 25.77 11.2-2.38 7.08-5.27 14.31-8.68 21.68zM119.22 33.64c0-7.39 2.72-14.38 8.16-20.97 5.44-6.59 12.28-10.87 20.52-12.84.22 1.63.33 3.16.33 4.58 0 7.39-2.8 14.5-8.41 21.33-5.61 6.83-12.45 10.97-20.52 12.41-.05-1.52-.08-3.02-.08-4.51z" />
-              </svg>
-              <span>Apple</span>
-            </div>
-
-            {/* BEST BUY */}
-            <div className="bg-slate-900 text-[#FBF7F2] font-black px-2 py-0.5 text-lg sm:text-xl rounded tracking-tighter">
-              BEST BUY
-            </div>
-
-            {/* Spotify */}
-            <div className="flex items-center gap-1.5 text-2xl sm:text-3xl font-bold text-slate-900">
-              <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.307c-.218.358-.684.474-1.042.256-2.859-1.748-6.458-2.143-10.697-1.173-.411.093-.822-.164-.915-.575-.093-.411.164-.822.575-.915 4.639-1.06 8.608-.616 11.823 1.365.358.218.474.684.256 1.042zm1.469-3.267c-.275.447-.859.59-1.306.315-3.272-2.011-8.261-2.593-12.133-1.417-.503.153-1.036-.135-1.189-.638-.153-.503.135-1.036.638-1.189 4.425-1.343 9.921-.697 13.675 1.613.447.275.59.859.315 1.306zm.126-3.41c-3.924-2.33-10.386-2.545-14.129-1.408-.601.183-1.242-.161-1.425-.762-.183-.601.161-1.242.762-1.425 4.301-1.305 11.436-1.05 15.973 1.644.542.321.719 1.026.398 1.568-.321.542-1.026.719-1.568.398z"/>
-              </svg>
-              <span>Spotify</span>
-            </div>
-
-            {/* TARGET */}
-            <div className="flex items-center gap-1.5 text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-              <div className="w-5 h-5 rounded-full border-4 border-slate-900 flex items-center justify-center">
-                <div className="w-1.5 h-1.5 rounded-full bg-slate-900" />
-              </div>
-              <span>TARGET</span>
-            </div>
-
+        {/* ─── Bottom Accreditation Logos Row (Matches Screenshot 2) ─── */}
+        <div className="mt-16 pt-6 border-t border-slate-900/10">
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-800/80 bg-slate-950 p-2 sm:p-4 flex items-center justify-center">
+            <img
+              src="/images/hero-accreditation-logos.png"
+              alt="Solar Certifications and Accreditation Logos"
+              className="w-full max-w-5xl h-auto max-h-36 object-contain object-center rounded-xl"
+            />
           </div>
         </div>
 
