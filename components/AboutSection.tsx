@@ -197,7 +197,11 @@ export default function AboutSection() {
             {/* Bottom Paragraph (Exact text from Screenshot 2) */}
             <div className="pt-4 space-y-3">
               <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
-                To make sure the increasing number of jobs do not affect the quality of project management, it is an opportunity for all the solar companies to let us take responsibility for the project services such as <strong className="text-slate-950 font-semibold">permit plan sets</strong>, <strong className="text-slate-950 font-semibold">engineering review &amp; stamps</strong>, <strong className="text-slate-950 font-semibold">proposal drawings</strong>, etc so that solar installers can provide quality service to their clients and focus on project management.
+               As project volume grows, quality shouldn’t suffer. 
+Sun Permit takes ownership of permit plansets, structural
+ & electrical engineering stamps, and proposal drawings
+ — giving installers the bandwidth to deliver better service
+ and win more jobs.
               </p>
             </div>
           </motion.div>
