@@ -442,15 +442,13 @@ export default function SolarAnalyticsHero() {
 
         </div>
 
-        {/* ─── Bottom Accreditation Logos Row (Matches Screenshot 2) ─── */}
-        <div className="mt-16 pt-6 border-t border-slate-900/10">
-          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-slate-800/80 bg-slate-950 p-2 sm:p-4 flex items-center justify-center">
-            <img
-              src="/images/hero-accreditation-logos.png"
-              alt="Solar Certifications and Accreditation Logos"
-              className="w-full max-w-5xl h-auto max-h-36 object-contain object-center rounded-xl"
-            />
-          </div>
+        {/* ─── Bottom Accreditation Logos Row ─── */}
+        <div className="mt-12 pt-6 border-t border-slate-900/10 flex justify-center">
+          <img
+            src="/images/hero-accreditation-logos.png"
+            alt="Solar Certifications and Accreditation Logos"
+            className="w-full max-w-7xl h-auto rounded-2xl shadow-sm object-cover"
+          />
         </div>
 
       </main>
