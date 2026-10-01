@@ -33,35 +33,37 @@ export default function SolarAnalyticsHero() {
 
   return (
     <div className="relative w-full overflow-hidden bg-[#FBF8F5] text-slate-900 selection:bg-orange-500 selection:text-white">
-    
-      {/* ─── Warm Sunset Background: Screenshot Match ─── */}
+      {/* ─── Warm Sunset Background ─── */}
       <div className="absolute inset-0 pointer-events-none">
 
-        {/* Base: cream at the top, orange at the bottom */}
+        {/* Cream → Peach → Orange → Dark Orange */}
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(to bottom, #FBF8F5 0%, #FBF3EA 18%, #FBE2CC 38%, #F8B078 58%, #E85D24 76%, #A83212 91%, #76270F 100%)",
+            background:
+              "linear-gradient(to bottom, #FBF8F5 0%, #FBF3EA 18%, #FBE2CC 38%, #F8B078 58%, #E85D24 76%, #A83212 91%, #76270F 100%)",
           }}
         />
 
-        {/* Broad sunset-orange glow */}
+        {/* Main orange glow */}
         <div
           className="absolute inset-0"
           style={{
-            background: "radial-gradient(ellipse 75% 55% at 35% 70%, rgba(255,159,82,0.65) 0%, rgba(241,105,35,0.45) 35%, rgba(190,57,15,0.3) 60%, transparent 82%)",
+            background:
+              "radial-gradient(ellipse 75% 55% at 35% 70%, rgba(255,159,82,0.65) 0%, rgba(241,105,35,0.45) 35%, rgba(190,57,15,0.3) 60%, transparent 82%)",
           }}
         />
 
-        {/* Dark burnt-orange fade along the bottom */}
+        {/* Dark burnt-orange bottom */}
         <div
           className="absolute bottom-0 left-0 right-0 h-[38%]"
           style={{
-            background: "linear-gradient(to bottom, transparent 0%, rgba(142,43,14,0.18) 25%, rgba(104,34,13,0.55) 70%, rgba(78,27,12,0.85) 100%)",
+            background:
+              "linear-gradient(to bottom, transparent 0%, rgba(142,43,14,0.18) 25%, rgba(104,34,13,0.55) 70%, rgba(78,27,12,0.85) 100%)",
           }}
         />
 
-        {/* Subtle background texture */}
+        {/* Fine background texture */}
         <div className="absolute inset-0 opacity-[0.03] bg-repeat bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px]" />
 
       </div>
