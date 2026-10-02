@@ -149,6 +149,24 @@ export default function SolarAnalyticsHero() {
               </button>
             </motion.div>
 
+            {/* SunPermit Quick Feature Points (Matches Screenshot) */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="pt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold text-slate-800"
+            >
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> 24-Hr SLA Guarantee
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> 50-State PE Licensed
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> 99.8% AHJ Pass Rate
+              </span>
+            </motion.div>
+
           </div>
 
           {/* ─── Right Column: High-Fidelity Floating iPad Dashboard Mockup (Matches Screenshot) ─── */}
@@ -421,70 +439,13 @@ export default function SolarAnalyticsHero() {
 
         </div>
 
-        {/* ─── Bottom Accreditation Logos Row (Solid Black as in Screenshot) ─── */}
-        <div className="mt-20 pt-6">
-          <div className="flex flex-wrap items-center justify-between gap-8 sm:gap-12">
-            {/* NABCEP */}
-            <div className="h-10 sm:h-12 flex items-center justify-center">
-              <img
-                src="/images/accreditations/nabcep.png"
-                alt="NABCEP Certified PV Installation Professional"
-                className="h-full w-auto object-contain brightness-0 opacity-75 hover:opacity-100 transition-all"
-              />
-            </div>
-
-            {/* LG Chem */}
-            <div className="h-10 sm:h-12 flex items-center justify-center">
-              <img
-                src="/images/accreditations/lg-chem.png"
-                alt="LG Chem Certified Installer"
-                className="h-full w-auto object-contain brightness-0 opacity-75 hover:opacity-100 transition-all"
-              />
-            </div>
-
-            {/* ENPHASE */}
-            <div className="h-8 sm:h-10 flex items-center justify-center">
-              <img
-                src="/images/accreditations/enphase.png"
-                alt="Enphase"
-                className="h-full w-auto object-contain brightness-0 opacity-75 hover:opacity-100 transition-all"
-              />
-            </div>
-
-            {/* EverVolt */}
-            <div className="h-8 sm:h-10 flex items-center justify-center">
-              <img
-                src="/images/accreditations/evervolt.png"
-                alt="EverVolt Certified Installer"
-                className="h-full w-auto object-contain brightness-0 opacity-75 hover:opacity-100 transition-all"
-              />
-            </div>
-
-            {/* Drone Pilot */}
-            <div className="h-10 sm:h-12 flex items-center justify-center">
-              <div className="flex flex-col items-center justify-center text-center brightness-0 opacity-75 hover:opacity-100 transition-all">
-                <div className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center p-0.5">
-                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-black stroke-2">
-                    <circle cx="12" cy="12" r="3" />
-                    <circle cx="6" cy="6" r="2" />
-                    <circle cx="18" cy="6" r="2" />
-                    <circle cx="6" cy="18" r="2" />
-                    <circle cx="18" cy="18" r="2" />
-                    <line x1="8" y1="8" x2="10" y2="10" />
-                    <line x1="16" y1="8" x2="14" y2="10" />
-                    <line x1="8" y1="16" x2="10" y2="14" />
-                    <line x1="16" y1="16" x2="14" y2="14" />
-                  </svg>
-                </div>
-                <span className="text-[8px] font-black uppercase tracking-tight text-black mt-0.5 leading-none">
-                  Drone Pilot
-                </span>
-                <span className="text-[6.5px] font-bold text-black tracking-wider">
-                  TRAINING
-                </span>
-              </div>
-            </div>
-          </div>
+        {/* ─── Bottom Accreditation Logos Row (Matches Screenshot Exactly) ─── */}
+        <div className="mt-14 flex justify-center">
+          <img
+            src="/images/hero-logos-sunset.png"
+            alt="Solar Certifications and Accreditations"
+            className="w-full max-w-5xl h-auto object-contain mix-blend-multiply opacity-90 hover:opacity-100 transition-opacity"
+          />
         </div>
 
       </main>
