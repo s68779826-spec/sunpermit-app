@@ -12,14 +12,13 @@ import {
   Sun,
   Layers,
   Sliders,
-  Play,
+  CheckCircle2,
   HelpCircle,
   LogOut,
 } from "lucide-react";
 
 export default function SolarAnalyticsHero() {
   const [activeRange, setActiveRange] = useState<"daily" | "weekly" | "monthly" | "yearly">("monthly");
-  const [demoModalOpen, setDemoModalOpen] = useState(false);
 
   return (
     <div className="relative w-full overflow-hidden bg-[#FBF8F5] text-slate-900 selection:bg-orange-500 selection:text-white">
