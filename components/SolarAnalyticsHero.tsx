@@ -136,17 +136,6 @@ export default function SolarAnalyticsHero() {
               >
                 Get started
               </Link>
-
-              <button
-                type="button"
-                onClick={() => setDemoModalOpen(true)}
-                className="inline-flex items-center gap-2.5 text-base font-bold text-slate-950 hover:text-orange-600 transition-colors group"
-              >
-                <span>Watch Demo</span>
-                <div className="w-8 h-8 rounded-full border border-slate-900/30 flex items-center justify-center group-hover:border-orange-500 group-hover:bg-orange-50 transition-all">
-                  <Play className="w-3.5 h-3.5 fill-slate-950 text-slate-950 group-hover:fill-orange-600 group-hover:text-orange-600 ml-0.5" />
-                </div>
-              </button>
             </motion.div>
 
             {/* SunPermit Quick Feature Points (Matches Screenshot) */}
@@ -449,51 +438,6 @@ export default function SolarAnalyticsHero() {
         </div>
 
       </main>
-
-      {/* ─── Interactive Watch Demo Modal ─── */}
-      {demoModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
-          <div className="relative w-full max-w-2xl bg-[#0F172A] border border-slate-700 rounded-2xl p-6 shadow-2xl text-white">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-orange-500 animate-pulse" />
-                <h3 className="text-base font-bold">SunPermit Solar Analytics & CAD Demo</h3>
-              </div>
-              <button 
-                onClick={() => setDemoModalOpen(false)}
-                className="text-slate-400 hover:text-white text-sm px-2 py-1 rounded bg-slate-800"
-              >
-                ✕ Close
-              </button>
-            </div>
-            
-            <div className="py-8 text-center space-y-4">
-              <div className="w-16 h-16 rounded-full bg-orange-500/10 border border-orange-500/30 mx-auto flex items-center justify-center">
-                <Play className="w-7 h-7 text-orange-400 fill-orange-400 ml-1" />
-              </div>
-              <h4 className="text-xl font-bold text-white">Interactive Demo Walkthrough</h4>
-              <p className="text-slate-400 text-sm max-w-md mx-auto">
-                Watch how SunPermit generates residential and commercial permit plansets with automated AHJ compliance and full PE structural stamps in under 24 hours.
-              </p>
-              <div className="pt-2 flex justify-center gap-3">
-                <Link
-                  href="/request-permit"
-                  onClick={() => setDemoModalOpen(false)}
-                  className="bg-orange-500 hover:bg-orange-400 text-slate-950 font-bold px-6 py-2.5 rounded-xl text-sm transition-all"
-                >
-                  Request First Planset ($149)
-                </Link>
-                <button
-                  onClick={() => setDemoModalOpen(false)}
-                  className="bg-slate-800 hover:bg-slate-700 text-slate-300 px-5 py-2.5 rounded-xl text-sm font-semibold"
-                >
-                  Close Demo
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
