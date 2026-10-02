@@ -170,7 +170,7 @@ export default function SolarAnalyticsHero() {
           </div>
 
           {/* ─── Right Column: High-Fidelity Floating iPad Dashboard Mockup (Matches Screenshot) ─── */}
-          <div className="lg:col-span-7 relative">
+          <div className="lg:col-span-8 relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.96, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
