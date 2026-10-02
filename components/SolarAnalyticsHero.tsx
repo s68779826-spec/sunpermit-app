@@ -91,7 +91,7 @@ export default function SolarAnalyticsHero() {
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 lg:pt-16 pb-16 lg:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* ─── Left Column: Headline, Subtitle, CTAs ─── */}
+          {/* ─── Left Column: Headline, Subtitle, CTAs (Matches Screenshot Exactly) ─── */}
           <div className="lg:col-span-5 flex flex-col justify-center space-y-7">
             
             {/* Main Headline */}
@@ -101,9 +101,9 @@ export default function SolarAnalyticsHero() {
               transition={{ duration: 0.6 }}
               className="text-5xl sm:text-6xl xl:text-[64px] font-extrabold tracking-tight text-slate-950 leading-[1.08]"
             >
-              Order solar  <br />
-             design & engineering<br />
-              services
+              Understand<br />
+              Your Solar Data<br />
+              in Seconds
             </motion.h1>
 
             {/* Subtitle */}
@@ -113,7 +113,7 @@ export default function SolarAnalyticsHero() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-slate-700 text-base sm:text-lg font-normal leading-relaxed max-w-md"
             >
-              Our goal is to provide reliable service by assisting solar industry in every aspect and take part in making the solar network stronger. Get assistance and grow seamlessly.
+              Track sunlight, optimize your energy output, and make smarter solar decisions — all in one sleek, user-friendly dashboard.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -129,24 +129,17 @@ export default function SolarAnalyticsHero() {
               >
                 Get started
               </Link>
-            </motion.div>
 
-            {/* SunPermit Quick Feature Points */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="pt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold text-slate-600"
-            >
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> 24-Hr SLA Guarantee
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> 50-State PE Licensed
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600" /> 99.8% AHJ Pass Rate
-              </span>
+              <button
+                type="button"
+                onClick={() => setDemoModalOpen(true)}
+                className="inline-flex items-center gap-2.5 text-base font-bold text-slate-950 hover:text-orange-600 transition-colors group"
+              >
+                <span>Watch Demo</span>
+                <div className="w-8 h-8 rounded-full border border-slate-900/30 flex items-center justify-center group-hover:border-orange-500 group-hover:bg-orange-50 transition-all">
+                  <Play className="w-3.5 h-3.5 fill-slate-950 text-slate-950 group-hover:fill-orange-600 group-hover:text-orange-600 ml-0.5" />
+                </div>
+              </button>
             </motion.div>
 
           </div>
@@ -425,50 +418,50 @@ export default function SolarAnalyticsHero() {
 
         </div>
 
-        {/* ─── Bottom Accreditation Logos Row (Matches Screenshot) ─── */}
-        <div className="mt-16 pt-8 border-t border-slate-900/10">
-          <div className="flex flex-wrap items-center justify-between gap-8 sm:gap-12 opacity-85 hover:opacity-100 transition-opacity">
+        {/* ─── Bottom Accreditation Logos Row (Black Logos as in Screenshot) ─── */}
+        <div className="mt-16 pt-4">
+          <div className="flex flex-wrap items-center justify-between gap-8 sm:gap-12">
             {/* NABCEP */}
-            <div className="h-12 sm:h-14 flex items-center justify-center">
+            <div className="h-10 sm:h-12 flex items-center justify-center">
               <img
                 src="/images/accreditations/nabcep.png"
                 alt="NABCEP Certified PV Installation Professional"
-                className="h-full w-auto object-contain brightness-90 contrast-125"
+                className="h-full w-auto object-contain brightness-0 opacity-75 hover:opacity-100 transition-all"
               />
             </div>
 
             {/* LG Chem */}
-            <div className="h-12 sm:h-14 flex items-center justify-center">
+            <div className="h-10 sm:h-12 flex items-center justify-center">
               <img
                 src="/images/accreditations/lg-chem.png"
                 alt="LG Chem Certified Installer"
-                className="h-full w-auto object-contain brightness-90 contrast-125"
+                className="h-full w-auto object-contain brightness-0 opacity-75 hover:opacity-100 transition-all"
               />
             </div>
 
             {/* ENPHASE */}
-            <div className="h-9 sm:h-11 flex items-center justify-center">
+            <div className="h-8 sm:h-10 flex items-center justify-center">
               <img
                 src="/images/accreditations/enphase.png"
                 alt="Enphase"
-                className="h-full w-auto object-contain brightness-90 contrast-125"
+                className="h-full w-auto object-contain brightness-0 opacity-75 hover:opacity-100 transition-all"
               />
             </div>
 
             {/* EverVolt */}
-            <div className="h-10 sm:h-12 flex items-center justify-center">
+            <div className="h-8 sm:h-10 flex items-center justify-center">
               <img
                 src="/images/accreditations/evervolt.png"
                 alt="EverVolt Certified Installer"
-                className="h-full w-auto object-contain brightness-90 contrast-125"
+                className="h-full w-auto object-contain brightness-0 opacity-75 hover:opacity-100 transition-all"
               />
             </div>
 
             {/* Drone Pilot */}
-            <div className="h-12 sm:h-14 flex items-center justify-center">
-              <div className="flex flex-col items-center justify-center text-center">
-                <div className="w-10 h-10 rounded-full border-2 border-slate-900/80 flex items-center justify-center p-1">
-                  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-none stroke-slate-900 stroke-2">
+            <div className="h-10 sm:h-12 flex items-center justify-center">
+              <div className="flex flex-col items-center justify-center text-center brightness-0 opacity-75 hover:opacity-100 transition-all">
+                <div className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center p-0.5">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-black stroke-2">
                     <circle cx="12" cy="12" r="3" />
                     <circle cx="6" cy="6" r="2" />
                     <circle cx="18" cy="6" r="2" />
@@ -480,10 +473,10 @@ export default function SolarAnalyticsHero() {
                     <line x1="16" y1="16" x2="14" y2="14" />
                   </svg>
                 </div>
-                <span className="text-[9px] font-extrabold uppercase tracking-tight text-slate-900 mt-1 leading-none">
+                <span className="text-[8px] font-black uppercase tracking-tight text-black mt-0.5 leading-none">
                   Drone Pilot
                 </span>
-                <span className="text-[7px] font-bold text-slate-700 tracking-wider">
+                <span className="text-[6.5px] font-bold text-black tracking-wider">
                   TRAINING
                 </span>
               </div>
