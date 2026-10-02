@@ -175,7 +175,7 @@ export default function SolarAnalyticsHero() {
               initial={{ opacity: 0, scale: 0.96, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-              className="relative w-full lg:translate-x-8 xl:translate-x-16"
+              className="relative w-full lg:translate-x-28 xl:translate-x-40"
             >
               {/* Sleek Tablet Frame */}
               <div className="relative rounded-[36px] p-3 sm:p-4 bg-gradient-to-b from-slate-800 via-slate-900 to-black shadow-[0_30px_90px_rgba(0,0,0,0.35)] border border-slate-700/60 ring-1 ring-white/10">
