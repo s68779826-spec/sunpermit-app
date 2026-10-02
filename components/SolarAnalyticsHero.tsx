@@ -94,12 +94,12 @@ export default function SolarAnalyticsHero() {
         </nav>
       </header>
 
-      {/* ─── Main Hero Content Grid ─── */}
-      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 lg:pt-16 pb-16 lg:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      {/* ─── Main Hero Content: Space Between Layout (Left on Left, Right on Right) ─── */}
+      <main className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 pt-12 lg:pt-16 pb-16 lg:pb-24">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 xl:gap-16">
           
-          {/* ─── Left Column: Headline, Subtitle, CTAs (Matches Screenshot Exactly) ─── */}
-          <div className="lg:col-span-5 flex flex-col justify-center space-y-7">
+          {/* ─── Left Column: Aligned on the Left Side ─── */}
+          <div className="w-full lg:max-w-[480px] xl:max-w-[540px] shrink-0 flex flex-col justify-center space-y-7 text-left">
             
             {/* Main Headline */}
             <motion.h1 
@@ -169,13 +169,13 @@ export default function SolarAnalyticsHero() {
 
           </div>
 
-          {/* ─── Right Column: High-Fidelity Floating iPad Dashboard Mockup (Matches Screenshot) ─── */}
-        <div className="lg:col-span-7 relative flex justify-end">
+          {/* ─── Right Column: Tablet Mockup Aligned on the Far Right Side ─── */}
+          <div className="w-full lg:flex-1 flex justify-end">
             <motion.div
               initial={{ opacity: 0, scale: 0.96, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-               className="relative w-full lg:translate-x-20 xl:translate-x-32"
+              className="relative w-full max-w-[680px] xl:max-w-[760px]"
             >
               {/* Sleek Tablet Frame */}
               <div className="relative rounded-[36px] p-3 sm:p-4 bg-gradient-to-b from-slate-800 via-slate-900 to-black shadow-[0_30px_90px_rgba(0,0,0,0.35)] border border-slate-700/60 ring-1 ring-white/10">
