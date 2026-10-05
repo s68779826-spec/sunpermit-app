@@ -86,18 +86,18 @@ export default function PermitPlansetPage() {
   const [email, setEmail] = useState("");
   const [projectName, setProjectName] = useState("");
   const [projectAddress, setProjectAddress] = useState("");
-  const [propertyCategory, setPropertyCategory] = useState<"residential" | "commercial">("residential");
-  const [serviceOption, setServiceOption] = useState("Permit Planset + Structural Engineering");
+  const [propertyCategory, setPropertyCategory] = useState<"residential" | "commercial" | "">("");
+  const [serviceOption, setServiceOption] = useState("");
   const [hasBattery, setHasBattery] = useState(false);
   const [storageDetails, setStorageDetails] = useState(
     `Battery Make and Model: \nAnswer:\n\nNo. of units (Quantity): \nAnswer:\n\nStorage Type (Whole Home/Partial Backup): \nAnswer:`
   );
-  const [submissionPref, setSubmissionPref] = useState<"quick" | "detailed">("quick");
+  const [submissionPref, setSubmissionPref] = useState<"quick" | "detailed" | "">("");
   const [systemInfo, setSystemInfo] = useState(
     `Number of PV modules: \nAnswer:\n\nMake/Model of PV modules: \nAnswer:\n\nNumber of inverters: \nAnswer:\n\nMake/Model of inverters: \nAnswer:\n\nNumber of Power Optimizers: \nAnswer:\n\nMake/Model of Power Optimizer: \nAnswer:\n\nRacking Make/Model: \nAnswer:`
   );
   const [generalNotes, setGeneralNotes] = useState("");
-  const [systemType, setSystemType] = useState<"roofmount" | "groundmount">("roofmount");
+  const [systemType, setSystemType] = useState<"roofmount" | "groundmount" | "">("");
 
   // Detailed Textareas
   const [roofmountDetails, setRoofmountDetails] = useState(
@@ -462,7 +462,7 @@ export default function PermitPlansetPage() {
               </div>
 
               {/* System Type Deep Details Textarea */}
-              {systemType === "roofmount" ? (
+              {systemType === "roofmount" && (
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Roofmount Detailed Information
@@ -474,7 +474,8 @@ export default function PermitPlansetPage() {
                     className="w-full p-3 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs font-mono text-slate-800 focus:bg-white focus:outline-none focus:border-orange-500"
                   />
                 </div>
-              ) : (
+              )}
+              {systemType === "groundmount" && (
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Groundmount Detailed Information

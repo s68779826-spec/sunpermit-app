@@ -17,16 +17,16 @@ export default function RequestSalesProposalPage() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   // Form states
-  const [projectType, setProjectType] = useState("Residential-With-Traditional-Solar");
+  const [projectType, setProjectType] = useState("");
   const [projectName, setProjectName] = useState("");
   const [projectAddress, setProjectAddress] = useState("");
-  const [isNewConstruction, setIsNewConstruction] = useState("two");
-  const [sizingStrategy, setSizingStrategy] = useState("one");
-  const [fireOffset, setFireOffset] = useState("No-fire-code-enforced");
-  const [billAvailable, setBillAvailable] = useState("one");
+  const [isNewConstruction, setIsNewConstruction] = useState("");
+  const [sizingStrategy, setSizingStrategy] = useState("");
+  const [fireOffset, setFireOffset] = useState("");
+  const [billAvailable, setBillAvailable] = useState("");
   const [billFiles, setBillFiles] = useState<File[]>([]);
   const [annualKwh, setAnnualKwh] = useState("");
-  const [purchasePreference, setPurchasePreference] = useState("one");
+  const [purchasePreference, setPurchasePreference] = useState("");
   const [projectNotes, setProjectNotes] = useState("");
   const [pricePerWatt, setPricePerWatt] = useState("");
   const [moduleManufacturer, setModuleManufacturer] = useState("");
@@ -211,6 +211,7 @@ export default function RequestSalesProposalPage() {
                 onChange={(e) => setSizingStrategy(e.target.value)}
                 className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-orange-500"
               >
+                <option value="" disabled>Select Sizing Strategy</option>
                 <option value="one">Maximum Roof Space</option>
                 <option value="two">Specific System Size</option>
                 <option value="Offset-ELectric-Bills">Offset Electricity Bills</option>
@@ -228,6 +229,7 @@ export default function RequestSalesProposalPage() {
                 onChange={(e) => setFireOffset(e.target.value)}
                 className="w-full px-3.5 py-2.5 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-orange-500"
               >
+                <option value="" disabled>Select Fire Offset Code</option>
                 <option value="No-fire-code-enforced">No fire code enforced</option>
                 <option value="18-from-ridge">18" from ridge 3' on hip roofs and 2x 3' pathways from eave to ridge</option>
                 <option value="3-from-ridge-only">3' from ridge only</option>
