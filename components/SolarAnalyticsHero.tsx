@@ -427,56 +427,62 @@ export default function SolarAnalyticsHero() {
 
         </div>
 
-        {/* ─── Bottom Accreditation Logos Row — Dark/Black Low Opacity Logos Matching Screenshot ─── */}
-        <div className="mt-14 flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-75 hover:opacity-100 transition-opacity">
-          {/* Uber style brand representation */}
-          <span className="text-xl sm:text-2xl font-bold tracking-tighter text-black/80 font-sans">Uber</span>
-          
-          {/* Amazon style logo representation */}
-          <div className="flex flex-col items-center">
-            <span className="text-lg sm:text-xl font-bold tracking-tight text-black/80 font-sans leading-none">amazon</span>
-            <svg className="w-10 h-1.5 text-black/80 stroke-current fill-none stroke-[2]" viewBox="0 0 40 6">
-              <path d="M2,1 Q20,6 38,1" />
-            </svg>
+        {/* ─── Bottom Accreditation Logos Row — Clean Transparent Vector Logos ─── */}
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-10 sm:gap-16 opacity-85 hover:opacity-100 transition-opacity text-black">
+          {/* NABCEP */}
+          <div className="flex flex-col items-center justify-center text-center">
+            <div className="w-9 h-9 rounded-full border-2 border-black flex items-center justify-center p-1 mb-1">
+              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-black stroke-[2]">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <span className="text-[10px] font-extrabold uppercase tracking-tight text-black leading-none">NABCEP</span>
+            <span className="text-[7px] font-semibold text-black/70 tracking-wider">CERTIFIED PV</span>
           </div>
 
-          {/* NETFLIX */}
-          <span className="text-base sm:text-lg font-black tracking-widest text-black/80 font-sans uppercase">NETFLIX</span>
-
-          {/* Airbnb logo representation */}
-          <div className="flex items-center gap-1.5 text-black/80">
-            <svg className="w-5 h-5 fill-current" viewBox="0 0 32 32">
-              <path d="M16 1c-2 0-4 2-5 4L2 22c-1 2 0 5 2 6 2 2 5 2 7 0l5-6 5 6c2 2 5 2 7 0 2-1 3-4 2-6L21 5c-1-2-3-4-5-4zm0 6c1 0 2 1 3 3l7 14c0 1 0 2-1 2-1 1-2 1-3 0l-6-7-6 7c-1 1-2 1-3 0-1 0-1-1-1-2L13 10c1-2 2-3 3-3z"/>
-            </svg>
-            <span className="text-base sm:text-lg font-semibold tracking-tight font-sans">airbnb</span>
+          {/* LG Chem / LG Energy Solution */}
+          <div className="flex items-center gap-2 text-black">
+            <div className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center font-black text-xs">
+              LG
+            </div>
+            <div className="flex flex-col text-left leading-none">
+              <span className="text-xs font-black tracking-tight text-black">LG Chem</span>
+              <span className="text-[8px] font-bold text-black/70 tracking-wider">CERTIFIED</span>
+            </div>
           </div>
 
-          {/* Apple */}
-          <div className="flex items-center gap-1.5 text-black/80">
-            <svg className="w-5 h-5 fill-current" viewBox="0 0 170 170">
-              <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.13-1.9-14.36-6.07-3.37-2.73-7.23-7.44-11.59-14.14-7.28-11.2-12.87-23.77-16.78-37.71-3.9-13.94-5.86-26.68-5.86-38.22 0-14.1 3.52-25.76 10.56-34.97 7.04-9.21 16.03-13.95 26.96-14.22 4.46 0 9.47 1.15 15.03 3.44 5.56 2.29 9.38 3.44 11.45 3.44 1.74 0 5.68-1.22 11.82-3.67 6.14-2.45 11.47-3.56 16-3.32 11.97.98 21.61 5.39 28.91 13.23-10.45 6.32-15.57 15.22-15.36 26.7 0 9.7 3.7 17.84 11.1 24.42 7.4 6.58 16.29 10.13 26.67 10.66-2.5 7.41-5.88 15.25-10.14 23.52zM119.22 31.85c0-7.3 2.65-14.37 7.95-21.21 5.3-6.84 12.02-10.64 20.15-11.4 1.09 7.63-1.57 14.86-7.98 21.69-6.41 6.83-13.41 10.68-20.12 10.92z"/>
-            </svg>
-            <span className="text-base sm:text-lg font-medium tracking-tight font-sans">Apple</span>
-          </div>
-
-          {/* BEST BUY */}
-          <span className="text-base sm:text-lg font-black tracking-tighter text-black/80 font-sans italic">BEST BUY</span>
-
-          {/* Spotify */}
-          <div className="flex items-center gap-1.5 text-black/80">
-            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm5.521 17.341c-.217.357-.68.471-1.037.253-2.845-1.738-6.427-2.13-10.647-1.168-.403.093-.807-.161-.9-.564-.093-.404.16-.807.563-.9 4.621-1.056 8.568-.61 11.768 1.346.357.217.471.68.253 1.037zm1.472-3.275c-.273.444-.858.587-1.302.314-3.257-2.002-8.223-2.583-12.077-1.413-.5.152-1.026-.134-1.178-.634-.152-.5.134-1.027.634-1.179 4.405-1.336 9.873-.692 13.609 1.61.444.273.587.858.314 1.302zm.126-3.413c-3.906-2.319-10.354-2.533-14.116-1.391-.6.183-1.237-.164-1.42-.763-.183-.6.164-1.237.763-1.42 4.316-1.31 11.436-1.052 15.894 1.593.54.32.719 1.022.4 1.562-.32.54-1.022.72-1.521.419z"/>
-            </svg>
-            <span className="text-base sm:text-lg font-bold tracking-tight font-sans">Spotify</span>
-          </div>
-
-          {/* TARGET */}
-          <div className="flex items-center gap-1.5 text-black/80">
-            <svg className="w-5 h-5 stroke-current stroke-[3] fill-none" viewBox="0 0 24 24">
+          {/* ENPHASE */}
+          <div className="flex items-center gap-2 text-black">
+            <svg viewBox="0 0 24 24" className="w-7 h-7 fill-none stroke-black stroke-[2.5]">
               <circle cx="12" cy="12" r="9" />
-              <circle cx="12" cy="12" r="3" className="fill-current" />
+              <line x1="3" y1="12" x2="21" y2="12" />
             </svg>
-            <span className="text-base sm:text-lg font-black tracking-widest font-sans uppercase">TARGET</span>
+            <span className="text-sm font-extrabold tracking-widest uppercase text-black">ENPHASE</span>
+          </div>
+
+          {/* EverVolt / Panasonic */}
+          <div className="flex flex-col text-left leading-none text-black">
+            <span className="text-xs font-black tracking-tight uppercase">EverVolt</span>
+            <span className="text-[7.5px] font-bold text-black/70 tracking-widest uppercase">Panasonic</span>
+          </div>
+
+          {/* Drone Pilot */}
+          <div className="flex flex-col items-center justify-center text-center">
+            <div className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center p-0.5">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-black stroke-2">
+                <circle cx="12" cy="12" r="3" />
+                <circle cx="6" cy="6" r="2" />
+                <circle cx="18" cy="6" r="2" />
+                <circle cx="6" cy="18" r="2" />
+                <circle cx="18" cy="18" r="2" />
+                <line x1="8" y1="8" x2="10" y2="10" />
+                <line x1="16" y1="8" x2="14" y2="10" />
+                <line x1="8" y1="16" x2="10" y2="14" />
+                <line x1="16" y1="16" x2="14" y2="14" />
+              </svg>
+            </div>
+            <span className="text-[8px] font-black uppercase tracking-tight text-black mt-0.5 leading-none">Drone Pilot</span>
+            <span className="text-[6.5px] font-bold text-black tracking-wider">TRAINING</span>
           </div>
         </div>
 
