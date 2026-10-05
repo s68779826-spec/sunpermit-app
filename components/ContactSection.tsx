@@ -114,11 +114,11 @@ Engineer?
               </button>
 
               <a
-                href="tel:+1-832-756-8368"
+                href="tel:+1-551-291-2786"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-orange-400 transition-colors px-4 py-3 rounded-full border border-slate-800 hover:border-orange-500/50"
               >
                 <PhoneCall className="w-4 h-4 text-orange-400" />
-                <span>Call +1 (832) 756-8368</span>
+                <span>Call (551) 291-2786</span>
               </a>
             </motion.div>
 

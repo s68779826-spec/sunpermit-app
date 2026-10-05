@@ -47,11 +47,11 @@ export default function Footer() {
               </Link>
               
               <a
-                href="tel:+1-551-291-1786"
+                href="tel:+1-551-291-2786"
                 className="inline-flex items-center gap-2 text-xs font-bold text-slate-700 hover:text-orange-600 px-4 py-3 rounded-full border border-slate-200 hover:border-orange-300 transition-colors"
               >
                 <Phone className="w-3.5 h-3.5 text-orange-500" />
-                Call Us Now
+                (551) 291-2786
               </a>
             </div>
           </div>
