@@ -385,18 +385,20 @@ export default function PermitPlansetPage() {
                 </p>
               </div>
 
-              {/* System Information */}
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
-                  System Information
-                </label>
-                <textarea
-                  rows={8}
-                  value={systemInfo}
-                  onChange={(e) => setSystemInfo(e.target.value)}
-                  className="w-full p-3 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs font-mono text-slate-800 focus:bg-white focus:outline-none focus:border-orange-500"
-                />
-              </div>
+              {/* System Information — ONLY shown when Quick Project Submission ("quick") is selected */}
+              {submissionPref === "quick" && (
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    System Information
+                  </label>
+                  <textarea
+                    rows={8}
+                    value={systemInfo}
+                    onChange={(e) => setSystemInfo(e.target.value)}
+                    className="w-full p-3 bg-[#F1F3F6] border border-slate-200/90 rounded-xl text-xs font-mono text-slate-800 focus:bg-white focus:outline-none focus:border-orange-500"
+                  />
+                </div>
+              )}
 
               {/* General Notes */}
               <div>
