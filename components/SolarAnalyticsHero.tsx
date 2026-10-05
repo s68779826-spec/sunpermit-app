@@ -427,62 +427,63 @@ export default function SolarAnalyticsHero() {
 
         </div>
 
-        {/* ─── Bottom Accreditation Logos Row — Clean Transparent Vector Logos ─── */}
-        <div className="mt-14 flex flex-wrap items-center justify-center gap-10 sm:gap-16 opacity-85 hover:opacity-100 transition-opacity text-black">
+        {/* ─── Bottom Accreditation Logos Row — Transparent Solar Accreditations ─── */}
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-10 sm:gap-16 opacity-75 hover:opacity-100 transition-opacity">
           {/* NABCEP */}
-          <div className="flex flex-col items-center justify-center text-center">
-            <div className="w-9 h-9 rounded-full border-2 border-black flex items-center justify-center p-1 mb-1">
-              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-black stroke-[2]">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-              </svg>
-            </div>
-            <span className="text-[10px] font-extrabold uppercase tracking-tight text-black leading-none">NABCEP</span>
-            <span className="text-[7px] font-semibold text-black/70 tracking-wider">CERTIFIED PV</span>
+          <div className="h-10 sm:h-12 flex items-center justify-center">
+            <img
+              src="/images/accreditations/nabcep.png"
+              alt="NABCEP Certified PV Installation Professional"
+              className="h-full w-auto object-contain mix-blend-multiply"
+            />
           </div>
 
-          {/* LG Chem / LG Energy Solution */}
-          <div className="flex items-center gap-2 text-black">
-            <div className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center font-black text-xs">
-              LG
-            </div>
-            <div className="flex flex-col text-left leading-none">
-              <span className="text-xs font-black tracking-tight text-black">LG Chem</span>
-              <span className="text-[8px] font-bold text-black/70 tracking-wider">CERTIFIED</span>
-            </div>
+          {/* LG Chem */}
+          <div className="h-10 sm:h-12 flex items-center justify-center">
+            <img
+              src="/images/accreditations/lg-chem.png"
+              alt="LG Chem Certified Installer"
+              className="h-full w-auto object-contain mix-blend-multiply"
+            />
           </div>
 
           {/* ENPHASE */}
-          <div className="flex items-center gap-2 text-black">
-            <svg viewBox="0 0 24 24" className="w-7 h-7 fill-none stroke-black stroke-[2.5]">
-              <circle cx="12" cy="12" r="9" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-            </svg>
-            <span className="text-sm font-extrabold tracking-widest uppercase text-black">ENPHASE</span>
+          <div className="h-8 sm:h-10 flex items-center justify-center">
+            <img
+              src="/images/accreditations/enphase.png"
+              alt="Enphase"
+              className="h-full w-auto object-contain mix-blend-multiply"
+            />
           </div>
 
-          {/* EverVolt / Panasonic */}
-          <div className="flex flex-col text-left leading-none text-black">
-            <span className="text-xs font-black tracking-tight uppercase">EverVolt</span>
-            <span className="text-[7.5px] font-bold text-black/70 tracking-widest uppercase">Panasonic</span>
+          {/* EverVolt */}
+          <div className="h-8 sm:h-10 flex items-center justify-center">
+            <img
+              src="/images/accreditations/evervolt.png"
+              alt="EverVolt Certified Installer"
+              className="h-full w-auto object-contain mix-blend-multiply"
+            />
           </div>
 
           {/* Drone Pilot */}
-          <div className="flex flex-col items-center justify-center text-center">
-            <div className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center p-0.5">
-              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-black stroke-2">
-                <circle cx="12" cy="12" r="3" />
-                <circle cx="6" cy="6" r="2" />
-                <circle cx="18" cy="6" r="2" />
-                <circle cx="6" cy="18" r="2" />
-                <circle cx="18" cy="18" r="2" />
-                <line x1="8" y1="8" x2="10" y2="10" />
-                <line x1="16" y1="8" x2="14" y2="10" />
-                <line x1="8" y1="16" x2="10" y2="14" />
-                <line x1="16" y1="16" x2="14" y2="14" />
-              </svg>
+          <div className="h-10 sm:h-12 flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center text-center">
+              <div className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center p-0.5">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-black stroke-2">
+                  <circle cx="12" cy="12" r="3" />
+                  <circle cx="6" cy="6" r="2" />
+                  <circle cx="18" cy="6" r="2" />
+                  <circle cx="6" cy="18" r="2" />
+                  <circle cx="18" cy="18" r="2" />
+                  <line x1="8" y1="8" x2="10" y2="10" />
+                  <line x1="16" y1="8" x2="14" y2="10" />
+                  <line x1="8" y1="16" x2="10" y2="14" />
+                  <line x1="16" y1="16" x2="14" y2="14" />
+                </svg>
+              </div>
+              <span className="text-[8px] font-black uppercase tracking-tight text-black mt-0.5 leading-none">Drone Pilot</span>
+              <span className="text-[6.5px] font-bold text-black tracking-wider">TRAINING</span>
             </div>
-            <span className="text-[8px] font-black uppercase tracking-tight text-black mt-0.5 leading-none">Drone Pilot</span>
-            <span className="text-[6.5px] font-bold text-black tracking-wider">TRAINING</span>
           </div>
         </div>
 
