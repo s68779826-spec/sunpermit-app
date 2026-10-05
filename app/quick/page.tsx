@@ -148,16 +148,20 @@ export default function QuickOrderPage() {
           {quickCards.map((card, idx) => {
             const Icon = card.icon;
             return (
-              <Link key={card.id} href={card.href} className="block h-full">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+              <motion.div
+                key={card.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="h-full"
+              >
+                <Link
+                  href={card.href}
                   onMouseEnter={() => setHoveredCard(card.id)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  className={`relative rounded-3xl p-8 sm:p-10 transition-all flex flex-col justify-between h-full group cursor-pointer bg-white border ${
+                  className={`relative rounded-3xl p-8 sm:p-10 transition-all flex flex-col justify-between h-full group cursor-pointer bg-white border block ${
                     card.highlight
-                      ? "border-orange-300 shadow-xl shadow-orange-500/10 hover:border-orange-500"
+                      ? "border-orange-300 shadow-xl shadow-orange-500/10 hover:border-orange-500 hover:shadow-2xl"
                       : "border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-300"
                   }`}
                 >
@@ -195,8 +199,8 @@ export default function QuickOrderPage() {
                       {card.id === "planset" ? "24-Hr SLA" : card.id === "company" ? "Free Registration" : "Instant"}
                     </span>
                   </div>
-                </motion.div>
-              </Link>
+                </Link>
+              </motion.div>
             );
           })}
         </div>
