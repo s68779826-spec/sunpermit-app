@@ -59,7 +59,7 @@ export default function QuickOrderPage() {
       title: "Pay Your Invoice",
       subtitle: "Pay using credit card, ACH, or check tracking with instant receipt.",
       icon: CreditCard,
-      href: "/track-permit",
+      href: "/pay-invoice",
       badge: "Secure Portal",
       badgeColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
       cta: "Pay & Track",
