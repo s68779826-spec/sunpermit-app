@@ -463,8 +463,8 @@ export default function PermitPlansetPage() {
                 />
               </div>
 
-              {/* System Type Deep Details Textarea */}
-              {systemType === "roofmount" && (
+              {/* System Type Deep Details Textarea — ONLY shown when Detailed Project Submission ("detailed") AND a System Type is selected */}
+              {submissionPref === "detailed" && systemType === "roofmount" && (
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Roofmount Detailed Information
@@ -477,7 +477,7 @@ export default function PermitPlansetPage() {
                   />
                 </div>
               )}
-              {systemType === "groundmount" && (
+              {submissionPref === "detailed" && systemType === "groundmount" && (
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Groundmount Detailed Information
