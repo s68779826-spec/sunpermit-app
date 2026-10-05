@@ -143,62 +143,60 @@ export default function QuickOrderPage() {
           </motion.p>
         </div>
 
-        {/* ─── 4 Action Cards Grid (Exact 4 Cards from Screenshot 2) ─── */}
+        {/* ─── 4 Action Cards Grid (Full clickable cards) ─── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {quickCards.map((card, idx) => {
             const Icon = card.icon;
             return (
-              <motion.div
-                key={card.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                onMouseEnter={() => setHoveredCard(card.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-                className={`relative rounded-3xl p-8 sm:p-10 transition-all flex flex-col justify-between group cursor-pointer bg-white border ${
-                  card.highlight
-                    ? "border-orange-300 shadow-xl shadow-orange-500/10 hover:border-orange-500"
-                    : "border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-300"
-                }`}
-              >
-                <div>
-                  {/* Top Row: Icon & Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-[#FFF2E8] text-orange-600 border border-orange-200/80 flex items-center justify-center group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white transition-all shadow-xs">
-                      <Icon className="w-7 h-7" />
+              <Link key={card.id} href={card.href} className="block h-full">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  onMouseEnter={() => setHoveredCard(card.id)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  className={`relative rounded-3xl p-8 sm:p-10 transition-all flex flex-col justify-between h-full group cursor-pointer bg-white border ${
+                    card.highlight
+                      ? "border-orange-300 shadow-xl shadow-orange-500/10 hover:border-orange-500"
+                      : "border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-300"
+                  }`}
+                >
+                  <div>
+                    {/* Top Row: Icon & Badge */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="w-14 h-14 rounded-2xl bg-[#FFF2E8] text-orange-600 border border-orange-200/80 flex items-center justify-center group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white transition-all shadow-xs">
+                        <Icon className="w-7 h-7" />
+                      </div>
+
+                      <span className={`text-[11px] font-bold px-3 py-1 rounded-full border ${card.badgeColor}`}>
+                        {card.badge}
+                      </span>
                     </div>
 
-                    <span className={`text-[11px] font-bold px-3 py-1 rounded-full border ${card.badgeColor}`}>
-                      {card.badge}
-                    </span>
+                    {/* Card Title */}
+                    <h3 className="text-2xl font-extrabold text-slate-950 mb-3 tracking-tight group-hover:text-orange-600 transition-colors">
+                      {card.title}
+                    </h3>
+
+                    {/* Card Subtitle */}
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                      {card.subtitle}
+                    </p>
                   </div>
 
-                  {/* Card Title */}
-                  <h3 className="text-2xl font-extrabold text-slate-950 mb-3 tracking-tight group-hover:text-orange-600 transition-colors">
-                    {card.title}
-                  </h3>
+                  {/* Bottom CTA Link */}
+                  <div className="pt-8 mt-6 border-t border-slate-100 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-2 text-sm font-bold text-slate-950 group-hover:text-orange-600 transition-colors">
+                      <span>{card.cta}</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform text-orange-500" />
+                    </span>
 
-                  {/* Card Subtitle */}
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-                    {card.subtitle}
-                  </p>
-                </div>
-
-                {/* Bottom CTA Link */}
-                <div className="pt-8 mt-6 border-t border-slate-100 flex items-center justify-between">
-                  <Link
-                    href={card.href}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-slate-950 group-hover:text-orange-600 transition-colors"
-                  >
-                    <span>{card.cta}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform text-orange-500" />
-                  </Link>
-
-                  <span className="text-xs text-slate-400 font-medium">
-                    {card.id === "planset" ? "24-Hr SLA" : card.id === "company" ? "Free Registration" : "Instant"}
-                  </span>
-                </div>
-              </motion.div>
+                    <span className="text-xs text-slate-400 font-medium">
+                      {card.id === "planset" ? "24-Hr SLA" : card.id === "company" ? "Free Registration" : "Instant"}
+                    </span>
+                  </div>
+                </motion.div>
+              </Link>
             );
           })}
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import confetti from "canvas-confetti";
@@ -9,7 +10,8 @@ import {
   CheckCircle2,
   Compass,
   ArrowRight,
-  FileSpreadsheet
+  FileSpreadsheet,
+  CreditCard
 } from "lucide-react";
 
 export default function RequestSalesProposalPage() {
@@ -63,6 +65,33 @@ export default function RequestSalesProposalPage() {
       <Navbar />
 
       <main className="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto w-full">
+        {/* ─── Top Switcher Tabs (Matches Screenshot 2 Exactly) ─── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10">
+          <Link
+            href="/permit-planset"
+            className="bg-white hover:bg-orange-50/50 border border-slate-200/90 hover:border-orange-300 rounded-2xl p-6 text-center shadow-xs transition-all flex flex-col items-center justify-center gap-2.5 group"
+          >
+            <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Compass className="w-5 h-5" />
+            </div>
+            <span className="text-sm font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
+              Request Permit Planset (Quick)
+            </span>
+          </Link>
+
+          <Link
+            href="/pay-invoice"
+            className="bg-white hover:bg-orange-50/50 border border-slate-200/90 hover:border-orange-300 rounded-2xl p-6 text-center shadow-xs transition-all flex flex-col items-center justify-center gap-2.5 group"
+          >
+            <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <CreditCard className="w-5 h-5" />
+            </div>
+            <span className="text-sm font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
+              Pay Your Invoice
+            </span>
+          </Link>
+        </div>
+
         {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-xs font-bold text-orange-700 uppercase tracking-wider mb-4">
