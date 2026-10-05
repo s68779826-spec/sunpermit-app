@@ -22,7 +22,7 @@ const sunServices = [
     title: "Engineering",
     description: "Electrical & Structural review and stamps, Structural Analysis Report.",
     linkText: "Discover how",
-    href: "/request-permit?service=engineering",
+    href: "/permit-planset",
   },
   {
     id: "proposals",
@@ -30,7 +30,7 @@ const sunServices = [
     title: "Proposal drawings",
     description: "Aurora proposals, Shade Report, Production Report, 3d Roof Design.",
     linkText: "Discover how",
-    href: "/request-permit?service=proposals",
+    href: "/request-sales-proposal",
   },
   {
     id: "plansets",
@@ -38,7 +38,7 @@ const sunServices = [
     title: "Permit Plansets",
     description: "CAD Plan as per local codes & regulations, BOM, Safety Plan.",
     linkText: "Discover how",
-    href: "/request-permit?service=planset",
+    href: "/permit-planset",
   },
   {
     id: "project-mgmt",

@@ -94,7 +94,7 @@ export default function SubmitCompanyPage() {
         {/* ─── Top Switcher Tabs (Matches Screenshot Exactly) ─── */}
         <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-12">
           <Link
-            href="/request-permit"
+            href="/permit-planset"
             className="flex-1 max-w-sm bg-white hover:bg-orange-50/50 border border-slate-200/90 hover:border-orange-300 rounded-2xl py-4 px-6 text-center shadow-xs transition-all flex flex-col items-center gap-2 group"
           >
             <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -106,7 +106,7 @@ export default function SubmitCompanyPage() {
           </Link>
 
           <Link
-            href="/request-permit?service=proposals"
+            href="/request-sales-proposal"
             className="flex-1 max-w-sm bg-white hover:bg-orange-50/50 border border-slate-200/90 hover:border-orange-300 rounded-2xl py-4 px-6 text-center shadow-xs transition-all flex flex-col items-center gap-2 group"
           >
             <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
